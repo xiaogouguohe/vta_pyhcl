@@ -1,7 +1,7 @@
 # VTA pyhcl implementation of interface.axi/AXI.scala
 # Author: SunnyChen
 # Date:   2020-05-25
-from math import log
+from math import *
 
 
 class AXIParams:
@@ -23,24 +23,24 @@ class AXIParams:
         self.lenBits = lenBits
         self.userBits = userBits
 
-        self.strbBits = int(dataBits / 8)
-        self.sizeBits = 3
-        self.burstBits = 2
-        self.lockBits = 2
-        self.cacheBits = 4
-        self.protBits = 3
-        self.qosBits = 4
-        self.regionBits = 4
-        self.respBits = 2
-        self.sizeConst = round(log(int(dataBits / 8), 2))
-        self.idConst = 0
-        self.userConst = 1 if coherent else 0
-        self.burstConst = 1
-        self.lockConst = 0
-        self.cacheConst = 15 if coherent else 3
-        self.protConst = 4 if coherent else 0
-        self.qosConst = 0
-        self.regionConst = 0
+        self.strbBits: int = int(dataBits / 8)
+        self.sizeBits: int = 3
+        self.burstBits: int = 2
+        self.lockBits: int = 2
+        self.cacheBits: int = 4
+        self.protBits: int = 3
+        self.qosBits: int = 4
+        self.regionBits: int = 4
+        self.respBits: int = 2
+        self.sizeConst: int = ceil(log(int(dataBits / 8), 2))
+        self.idConst: int = 0
+        self.userConst: int = 1 if coherent else 0
+        self.burstConst: int = 1
+        self.lockConst: int = 0
+        self.cacheConst: int = 15 if coherent else 3
+        self.protConst: int = 4 if coherent else 0
+        self.qosConst: int = 0
+        self.regionConst: int = 0
 
 
 if __name__ == '__main__':
