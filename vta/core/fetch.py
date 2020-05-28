@@ -124,7 +124,7 @@ def fetch(debug: bool = False):
         with elsewhen((state == sDrain) & (inst_q.io.count == U(0)) & (xrem != U(0))):
             raddr <<= raddr + xmax_bytes
 
-        io.vme_rd_cmd_valid <<= state == sReadCmd
+        io.vme_rd_cmd_valid <<= (state == sReadCmd)
         io.vme_rd_cmd_bits_addr <<= raddr
         io.vme_rd_cmd_bits_len <<= rlen
 
