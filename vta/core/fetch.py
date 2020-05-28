@@ -24,7 +24,7 @@ from vta.core.isa import *
 from vta.shell.parameters import *
 from vta.shell.vme import *
 from vta.util.ext_funcs import *
-from vta.util.queue import *
+from vta.util.selfqueue import *
 
 
 def fetch(debug: bool = False):
@@ -32,29 +32,24 @@ def fetch(debug: bool = False):
     vp = p.vcrParams
     mp = p.memParams
 
-    # inst Bundle
-    inst_io = IO()
-
-    class Inst(BaseType):
+    class Inst(Bundle):
         def __init__(self):
-            self.ld = U.w(INST_BITS)
-            self.co = U.w(INST_BITS)
-            self.st = U.w(INST_BITS)
+            self.ld = decoupled(U.w(INST_BITS))
+            self.co = decoupled(U.w(INST_BITS))
+            self.st = decoupled(U.w(INST_BITS))
 
-    decoupled(inst_io, Inst())
+    class Fetch_IO(Bundle):
+        def __init__(self):
+            self.launch = Input(Bool)
+            self.ins_baddr = Input(U.w(mp.addrBits))
+            self.ins_count = Input(U.w(vp.regBits))
+            self.vme_rd = VMEReadMaster()
+            self.inst = Inst()
 
     # Fetch module
     class Fetch(Module):
         # Construct IO
-        # Based IO
-        io = IO(
-            launch=Input(Bool),
-            ins_baddr=Input(U.w(mp.addrBits)),
-            ins_count=Input(U.w(vp.regBits)),
-        )
-        VMReadMaster_io = VMReadMaster()
-        cat_io(io, VMReadMaster_io, 'vme_rd')
-        cat_io(io, inst_io, 'inst')
+        io = mapper(Fetch_IO())
 
         # Module logic begins
         entries_q = 1 << (mp.lenBits - 1)

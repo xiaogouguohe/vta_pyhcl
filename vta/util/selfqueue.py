@@ -33,25 +33,31 @@ class Counter:
 
 
 def queue(gentype, entries):
-    class Enq(BaseType):
+    class Queue_IO(Bundle):
         def __init__(self):
-            self.enq = gentype
+            self.count = Output(U.w(ceil(log(entries, 2))))
+            self.enq = flipped(decoupled(gentype))
+            self.deq = decoupled(gentype)
 
-    class Deq(BaseType):
-        def __init__(self):
-            self.deq = gentype
+    cio = Queue_IO()
 
     class Queue(Module):
-        # Base IO
-        io = IO(
-            count=Output(U.w(ceil(log(entries, 2)))),
+        io = mapper(Queue_IO())
 
-            # # debug
-            # enq_cvalue=Output(U.w(ceil(log(entries, 2)))),
-            # deq_cvalud=Output(U.w(ceil(log(entries, 2))))
-        )
-        decoupled(io, Enq(), is_fliped=True)
-        decoupled(io, Deq())
+        # class Demo:
+        #     pass
+        #
+        # io = Demo()
+        # io.count = tio._count
+        # io.enq = Demo()
+        # io.enq.__dict__["valid"] = tio.__getattribute__("enq_valid")
+        # io.enq.ready = tio.enq_ready
+        # io.enq.bits = tio.enq_bits
+        # io.deq = Demo()
+        # io.deq.valid = tio.deq_valid
+        # io.deq.ready = tio.deq_ready
+        # io.deq.bits = tio.deq_bits
+        # # io = mapper(Queue_IO())
 
         # Module Logic
         ram = Mem(entries, gentype)
@@ -89,8 +95,8 @@ def queue(gentype, entries):
                                  U(entries) + ptr_diff, ptr_diff))
 
         # # debug
-        # io.enq_cvalue <<= enq_ptr.value
-        # io.deq_cvalud <<= deq_ptr.value
+        # rio.enq_cvalue <<= enq_ptr.value
+        # rio.deq_cvalud <<= deq_ptr.value
 
     return Queue()
 
