@@ -15,7 +15,7 @@ class Counter:
         assert n >= 0
 
         self.n = n
-        self.value = RegInit(U.w(ceil(log(n, 2)))(0)) if n > 1 else U(0)
+        self.value = RegInit(U.w(int(ceil(log(n, 2))))(0)) if n > 1 else U(0)
 
     def inc(self):
         if self.n > 1:
@@ -33,9 +33,9 @@ class Counter:
 
 
 def queue(gentype, entries):
-    class Queue_IO(Bundle):
+    class Queue_IO(Bundle_Helper):
         def __init__(self):
-            self.count = Output(U.w(ceil(log(entries, 2))))
+            self.count = Output(U.w(int(ceil(log(entries, 2)))))
             self.enq = flipped(decoupled(gentype))
             self.deq = decoupled(gentype)
 

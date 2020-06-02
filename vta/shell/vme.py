@@ -37,7 +37,7 @@ class VMECmd(BaseType):
 #     decoupled(vmreadmaster, Cmd())
 #     decoupled(vmreadmaster, Data(), is_fliped=True)
 #     return vmreadmaster
-class VMEReadMaster(Bundle):
+class VMEReadMaster(Bundle_Helper):
     def __init__(self):
         p = ShellKey()
         dataBits = p.memParams.dataBits

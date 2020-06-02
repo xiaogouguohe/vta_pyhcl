@@ -31,3 +31,24 @@ class ShellParams:
 
 class ShellKey(ShellParams):
     pass
+
+
+class CoreParams:
+    batch: int = 1
+    blockOut: int = 16
+    blockIn: int = 16
+    inpBits: int = 8
+    wgtBits: int = 8
+    uopBits: int = 32
+    accBits: int = 32
+    outBits: int = 8
+    uopMemDepth: int = 512
+    inpMemDepth: int = 512
+    wgtMemDepth: int = 512
+    accMemDepth: int = 512
+    outMemDepth: int = 512
+    instQueueEntries: int = 32
+
+
+class CoreKey(CoreParams):
+    pass

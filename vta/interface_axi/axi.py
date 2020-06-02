@@ -32,7 +32,7 @@ class AXIParams:
         self.qosBits: int = 4
         self.regionBits: int = 4
         self.respBits: int = 2
-        self.sizeConst: int = ceil(log(int(dataBits / 8), 2))
+        self.sizeConst: int = int(ceil(log(int(dataBits / 8), 2)))
         self.idConst: int = 0
         self.userConst: int = 1 if coherent else 0
         self.burstConst: int = 1

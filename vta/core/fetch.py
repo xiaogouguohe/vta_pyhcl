@@ -32,13 +32,13 @@ def fetch(debug: bool = False):
     vp = p.vcrParams
     mp = p.memParams
 
-    class Inst(Bundle):
+    class Inst(Bundle_Helper):
         def __init__(self):
             self.ld = decoupled(U.w(INST_BITS))
             self.co = decoupled(U.w(INST_BITS))
             self.st = decoupled(U.w(INST_BITS))
 
-    class Fetch_IO(Bundle):
+    class Fetch_IO(Bundle_Helper):
         def __init__(self):
             self.launch = Input(Bool)
             self.ins_baddr = Input(U.w(mp.addrBits))

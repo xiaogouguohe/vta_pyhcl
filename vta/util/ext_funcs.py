@@ -2,7 +2,6 @@
 # Author: SunnyChen
 # Date:   2020-05-25
 from typing import List
-
 from pyhcl import *
 
 
@@ -17,7 +16,7 @@ class BaseType:
 
 
 # Enhance current io functions
-class Bundle:
+class Bundle_Helper:
     pass
 
 
@@ -31,7 +30,7 @@ def mapper_helper(bundle, dic=None, prefix=""):
                 tdic[k] = v
             else:
                 tdic[prefix+"_"+k] = v
-        elif isinstance(v, Bundle):
+        elif isinstance(v, Bundle_Helper):
             if prefix == "":
                 mapper_helper(v, tdic, k)
             else:
@@ -43,7 +42,7 @@ def mapper_helper(bundle, dic=None, prefix=""):
                         tdic[k+"_"+str(i)] = v[i]
                     else:
                         tdic[prefix+"_"+k+"_"+str(i)] = v[i]
-                elif isinstance(v[i], Bundle):
+                elif isinstance(v[i], Bundle_Helper):
                     if prefix == "":
                         mapper_helper(v[i], tdic, k+"_"+str(i))
                     else:
@@ -60,14 +59,32 @@ def mapper(bundle):
 
 
 def decoupled(basetype):
-    coupled = Bundle()
+    coupled = Bundle_Helper()
     coupled.valid = Output(Bool)
     coupled.ready = Input(Bool)
 
     if isinstance(basetype, type):
         coupled.bits = Output(basetype)
     elif isinstance(basetype, BaseType):
-        coupled.bits = Bundle()
+        coupled.bits = Bundle_Helper()
+        dic = basetype.__dict__
+        for keys in dic:
+            if isinstance(dic[keys], type):
+                coupled.bits.__dict__[keys] = Output(dic[keys])
+
+    return coupled
+
+
+def valid(basetype):
+    coupled = Bundle_Helper()
+    coupled.valid = Output(Bool)
+
+    if isinstance(basetype, type):
+        coupled.bits = Output(basetype)
+    elif isinstance(basetype, Vec):
+        coupled.bits = Output(basetype)
+    elif isinstance(basetype, BaseType):
+        coupled.bits = Bundle_Helper()
         dic = basetype.__dict__
         for keys in dic:
             if isinstance(dic[keys], type):
@@ -85,7 +102,7 @@ def flipped(bundle):
     for keys in dic:
         if isinstance(dic[keys], Pub):
             dic[keys] = base_flipped(dic[keys])
-        elif isinstance(dic[keys], Bundle):
+        elif isinstance(dic[keys], Bundle_Helper):
             flipped(dic[keys])
 
     return bundle
