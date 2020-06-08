@@ -3,6 +3,8 @@ VTA pyhcl implementation of core/TensorUtil.scala
 Author: SunnyChen
 Date:   2020-06-02
 """
+from vta.core.decode import MemDecode_Div
+from vta.core.isa import *
 from vta.shell.parameters import *
 from vta.util.ext_funcs import *
 from math import *
@@ -71,6 +73,46 @@ class TensorClient(TensorParams):
 
         self.rd = RD()
         self.wr = WR()
+
+
+# TensorDataCtrl. Data controller for TensorLoad
+def tensordatactrl(tensorType: str = "none", sizeFactor: int = 1, strideFactor: int = 1):
+    mp = ShellKey().memParams
+
+    class TensorDataCtrl(Module):
+        io = IO(
+            start=Input(Bool),
+            done=Output(Bool),
+            inst=Input(U.w(INST_BITS)),
+            baddr=Input(U.w(mp.addrBits)),
+            xinit=Input(Bool),
+            xupdate=Input(Bool),
+            yupdate=Input(Bool),
+            stride=Output(Bool),
+            split=Output(Bool),
+            commit=Output(Bool),
+            addr=Output(U.w(mp.addrBits)),
+            len=Output(U.w(mp.lenBits))
+        )
+
+        dec = MemDecode_Div(io.inst)
+
+        caddr = Reg(U.w(mp.addrBits))
+        baddr = Reg(U.w(mp.addrBits))
+
+        len = Reg(U.w(mp.lenBits))
+
+        xmax_bytes = U((1 << mp.lenBits) * mp.dataBits / 8)
+        xcnt = Reg(U.w(mp.lenBits))
+        xrem = Reg(U.w(M_SIZE_BITS))
+        xsize = (dec.xsize << U(int(ceil(log(sizeFactor, 2))))) - U(1)
+        xmax = U(1 << mp.lenBits)
+        ycnt = Reg(U.w(M_SIZE_BITS))
+
+        stride = (xcnt == len) & (xrem == U(0)) & (ycnt != (dec.ysize - U(1)))
+        split = (xcnt == len) & (xrem != U(0))
+
+    return TensorDataCtrl()
 
 
 if __name__ == '__main__':

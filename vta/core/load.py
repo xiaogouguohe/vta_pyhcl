@@ -11,16 +11,20 @@
     other modules such as Compute.
 """
 from pyhcl import *
+from vta.core.decode import LoadDecode
 from vta.core.isa import *
+from vta.core.semaphore import semaphore
 from vta.core.tensorutil import TensorClient
 from vta.shell.parameters import *
 from vta.util.ext_funcs import *
 from vta.shell.vme import *
+from vta.util.selfqueue import queue
 
 
 def load(debug: bool = False):
     p = ShellKey()
     mp = p.memParams
+    cp = CoreKey()
 
     class Load_IO(Bundle_Helper):
         def __init__(self):
@@ -40,6 +44,16 @@ def load(debug: bool = False):
 
         sIdle, sSync, sExe = [U(i) for i in range(3)]
         state = RegInit(sIdle)
+
+        s = semaphore(counterBits=8, counterInitValue=0)
+        inst_q = queue(gentype=U.w(INST_BITS), entries=cp.instQueueEntries)
+
+        dec = LoadDecode()
+        dec.io.inst <<= inst_q.io.deq_bits
+
+        tensorType = ["inp", "wgt"]
+        tensorDec = [dec.io.isInput, dec.io.isWeight]
+        
 
     return Load()
 
