@@ -65,5 +65,61 @@ from vta.shell.vme import *
       #val state = RegInit(sIdle)
       sIdle, sSync, sExe = [U(i) for i in range(3)]
       state = RegInit(sIdle)
+       
+      s = semaphore(counterBits=8, counterInitValue=0)
+      inst_q = queue(U.w(INST_BITS), p(CoreKey).instQueueEntries))
+      
+      dec=LoadDecode()
+      dec.io.inst <<= inst_q.io.deq.bits
+      
+      tensorStore = Module(new TensorStore(tensorType = "out"))
+      
+      start=inst_q.io.deq.valid & Mux(dec.io.pop_next, s.io.sready, Bool(True))
+      done = tensorStore.io.done
+      
+      #control
+      with when(state == sIdle):
+            with when(start):
+                with when(dec.io.isSync):
+                    state <<= sSync
+                with elsewhen((dec.io.isInput) | (dec.io.isWeight)):
+                    state <<= sExe
+        with elsewhen(state == sSync):
+            state <<= sIdle
+        with elsewhen(state == sExe):
+            with when(done):
+                state <<= sIdle
+            
+       #insturctions
+       inst_q.io.enq <> io.inst
+       inst_q.io.deq.ready <<= (state == sExe & done) | (state == sSync)
+       
+       #store
+       tensorStore.io.start <<= state == sIdle & start & dec.io.isStore
+       tensorStore.io.inst <<= inst_q.io.deq.bits
+       tensorStore.io.baddr <<= io.out_baddr
+       io.vme_wr <> tensorStore.io.vme_wr
+       tensorStore.io.tensor <> io.out
+
+       #semaphore
+       s.io.spost <<= io.i_post
+       s.io.swait <<= dec.io.pop_next & (state == sIdle & start)
+       io.o_post <<= dec.io.push_next & ((state == sExe & done) | (state == sSync))
+       
+       #debug
+       with when (debug):
+        #start
+        with when((state == sIdle) & (start)):
+           with when(dec.io.isSync):
+             printf("[Store] start sync\n")
+           with elsewhen(dec.io.isStore):
+            printf("[Store] start\n")
+        #done
+        with when(state == sSync):
+         printf("[Store] done sync\n")
+        with when(state == sExe):
+          with when(done):
+           printf("[Store] done\n")
+
       
       
