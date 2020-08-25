@@ -40,5 +40,17 @@ def tensorload(tensorType: str = "none", debug: bool = False):
         strideFactor = tp.tensorLength * tp.tensorWidth
 
         dec = MemDecode_Div(io.inst)
+        dataCtrl = tensordatactrl(tensorType, sizeFactor, strideFactor)
+        dataCtrlDone = RegInit(Bool(False))
+        yPadCtrl0 = tensorpadctrl("YPad0", sizeFactor)
+        yPadCtrl1 = tensorpadctrl("YPad1", sizeFactor)
+        xPadCtrl0 = tensorpadctrl("XPad0", sizeFactor)
+        xPadCtrl1 = tensorpadctrl("XPad1", sizeFactor)
+
+        tag = Reg(U.w(log2ceil(tp.numMemBlock)))
+        set = Reg(U.w(log2ceil(tp.tensorLength)))
+
+        sIdle, sYPad0, sXPad0, sReadCmd, sReadData, sXPad1, sYPad1 = [U(i) for i in range(7)]
+        state = RegInit(U.w(3)(0))
 
     return TensorLoad()

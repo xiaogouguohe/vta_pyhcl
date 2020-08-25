@@ -20,7 +20,7 @@ class AXIParams:
         self.idBits = idBits
         self.addrBits = addrBits
         self.dataBits = dataBits
-        self.lenBits = lenBits
+        self.lenBits = lenBits          # Max burst length = 256, lenBits = 8
         self.userBits = userBits
 
         self.strbBits: int = int(dataBits / 8)

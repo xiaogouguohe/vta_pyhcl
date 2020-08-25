@@ -3,6 +3,7 @@
 # Date:   2020-05-25
 from typing import List
 from pyhcl import *
+from math import *
 
 
 # class Demo:
@@ -106,3 +107,7 @@ def flipped(bundle):
             flipped(dic[keys])
 
     return bundle
+
+
+def log2ceil(v):
+    return ceil(log(v, 2))
