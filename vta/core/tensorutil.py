@@ -248,6 +248,8 @@ def tensorpadctrl(padType: str = "None", sizeFactor: int = 1):
 
         io.done <<= (state == sActive) & (ycnt == ymax) & (xcnt == xmax)
 
+    return TensorPadCtrl()
+
 
 if __name__ == '__main__':
     print(isinstance(TensorClient(tensorType="inp"), Bundle_Helper))

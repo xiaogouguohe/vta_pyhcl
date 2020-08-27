@@ -51,6 +51,82 @@ def tensorload(tensorType: str = "none", debug: bool = False):
         set = Reg(U.w(log2ceil(tp.tensorLength)))
 
         sIdle, sYPad0, sXPad0, sReadCmd, sReadData, sXPad1, sYPad1 = [U(i) for i in range(7)]
-        state = RegInit(U.w(3)(0))
+        state = RegInit(U.w(3)(0))      # val state = RegInit(sIdle)
+
+        # control
+        with when(state == sIdle):
+            with when(io.start):
+                with when(dec.ypad_0 != U(0)):
+                    state <<= sYPad0
+                with elsewhen(dec.xpad_0 != U(0)):
+                    state <<= sXPad0
+                with otherwise():
+                    state <<= sReadCmd
+        with elsewhen(state == sYPad0):
+            with when(yPadCtrl0.io.done):
+                with when(dec.xpad_0 != U(0)):
+                    state <<= sXPad0
+                with otherwise():
+                    state <<= sReadCmd
+        with elsewhen(state == sXPad0):
+            with when(xPadCtrl0.io.done):
+                state <<= sReadCmd
+        with elsewhen(state == sReadCmd):
+            with when(io.vme_rd_data_valid):
+                with when(dataCtrl.io.done):
+                    with when(dec.xpad_1 != U(0)):
+                        state <<= sXPad1
+                    with elsewhen(dec.ypad_1 != U(0)):
+                        state <<= sYPad1
+                    with otherwise():
+                        state <<= sIdle
+                with elsewhen(dataCtrl.io.stride):
+                    with when(dec.xpad_1 != U(0)):
+                        state <<= sXPad1
+                    with elsewhen(dec.xpad_0 != U(0)):
+                        state <<= sXPad0
+                    with otherwise():
+                        state <<= sReadCmd
+                with elsewhen(dataCtrl.io.split):
+                    state <<= sReadCmd
+        with elsewhen(state == sXPad1):
+            with when(xPadCtrl1.io.done):
+                with when(dataCtrlDone):
+                    with when(dec.ypad_1 != U(0)):
+                        state <<= sYPad1
+                    with otherwise():
+                        state <<= sIdle
+                with otherwise():
+                    with when(dec.xpad_0 != U(0)):
+                        state <<= sXPad0
+                    with otherwise():
+                        state <<= sReadCmd
+        with elsewhen(state == sYPad1):
+            with when(yPadCtrl1.io.done & dataCtrlDone):
+                state <<= sIdle
+
+        # Apply to data controller
+        dataCtrl.io.start <<= (state == sIdle) & io.start
+        dataCtrl.io.inst <<= io.inst
+        dataCtrl.io.baddr <<= io.baddr
+
+        vme_cmd_fire = io.vme_rd_cmd_ready & io.vme_rd_cmd_valid
+        vme_data_fire = io.vme_rd_data_ready & io.vme_rd_data_valid
+
+        dataCtrl.io.xinit <<= vme_cmd_fire
+        dataCtrl.io.xupdate <<= vme_data_fire
+        dataCtrl.io.yupdate <<= vme_data_fire
+
+        with when(state == sIdle):
+            dataCtrlDone <<= Bool(False)
+        with elsewhen(vme_data_fire & dataCtrl.io.done):
+            dataCtrlDone <<= Bool(True)
+
+        # Pad
+        yPadCtrl0.io.start <<= (dec.ypad_0 != U(0)) & (state == sIdle) & io.start
+
+        yPadCtrl1.io.start <<= (dec.ypad_1 != U(0)) & \
+                               (vme_data_fire & dataCtrl.io.done & (dec.xpad_1 == U(0)) |
+                                ((state == sXPad1) & xPadCtrl1.io.done & dataCtrlDone))
 
     return TensorLoad()
