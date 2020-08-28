@@ -126,7 +126,78 @@ def tensorload(tensorType: str = "none", debug: bool = False):
         yPadCtrl0.io.start <<= (dec.ypad_0 != U(0)) & (state == sIdle) & io.start
 
         yPadCtrl1.io.start <<= (dec.ypad_1 != U(0)) & \
-                               (vme_data_fire & dataCtrl.io.done & (dec.xpad_1 == U(0)) |
-                                ((state == sXPad1) & xPadCtrl1.io.done & dataCtrlDone))
+                               (
+                                (vme_data_fire & dataCtrl.io.done & (dec.xpad_1 == U(0))) |
+                                ((state == sXPad1) & xPadCtrl1.io.done & dataCtrlDone)
+                               )
+
+        xPadCtrl0.io.start <<= (dec.xpad_0 != U(0)) & \
+                               (
+                                ((state == sIdle) & io.start) |
+                                ((state == sYPad0) & yPadCtrl0.io.done) |
+                                (vme_data_fire & (~dataCtrlDone) & dataCtrl.io.stride & (dec.xpad_1 == U(0))) |
+                                ((state == sXPad1) & xPadCtrl1.io.done & ~dataCtrlDone)
+                               )
+
+        xPadCtrl1.io.start <<= (dec.xpad_1 != U(0)) & vme_data_fire & \
+                               (dataCtrl.io.done | ((~dataCtrl.io.done) & dataCtrl.io.stride & (dec.xpad_1 != U(0))))
+
+        yPadCtrl0.io.inst <<= io.inst
+        yPadCtrl1.io.inst <<= io.inst
+        xPadCtrl0.io.inst <<= io.inst
+        xPadCtrl1.io.inst <<= io.inst
+
+        # read-from-dram
+        io.vme_rd_cmd_valid <<= state == sReadCmd
+        io.vme_rd_vmd_bits_addr <<= dataCtrl.io.addr
+        io.vme_rd_cmd_bits_len <<= dataCtrl.io.len      # AXI burst transmit length
+
+        io.vme_rd_data_ready <<= state == sReadData
+
+        # write-to-sram
+        isZeroPad = (state == sYPad0) | (state == sXPad0) | \
+                    (state == sXPad1) | (state == sYPad1)
+        # Tensor size = TensorWidth * TensorLength
+        # tag - Counter of width transmit times
+        with when((state == sIdle) | (state == sReadCmd) | (tag == U(tp.numMemBlock - 1))):
+            tag <<= U(0)
+        with elsewhen(vme_data_fire | isZeroPad):
+            tag <<= tag + U(1)
+
+        # set - Counter of length transmit times
+        with when((state == sIdle) | dataCtrlDone |
+                  ((set == U(tp.tensorLength - 1)) & (tag == U(tp.numMemBlock - 1)))):
+            set <<= U(0)
+        with elsewhen((vme_data_fire | isZeroPad) & (tag == U(tp.numMemBlock - 1))):
+            set <<= set + U(1)
+
+        waddr_cur = Reg(U.w(tp.memAddrBits))
+        waddr_nxt = Reg(U.w(tp.memAddrBits))
+        with when(state == sIdle):
+            waddr_cur <<= dec.sram_offset
+            waddr_nxt <<= dec.sram_offset
+        with elsewhen((vme_data_fire() | isZeroPad) &
+                      (set == U(tp.tensorLength - 1)) &
+                      (tag == U(tp.numMemBlock - 1))):
+            waddr_cur <<= waddr_cur + U(1)
+        with elsewhen(dataCtrl.io.stride & vme_data_fire):
+            waddr_cur <<= waddr_nxt + dec.xsize
+            waddr_nxt <<= waddr_nxt + dec.xsize
+
+        tensorFile = [Mem(tp.memDepth, Vec(tp.numMemBlock, U.w(tp.memBlockBits)))
+                      for _ in range(tp.tensorLength)]
+
+        wmask = [Wire(Vec(tp.numMemBlock, Bool)) for _ in range(tp.tensorLength)]
+        wdata = [Wire(Vec(tp.numMemBlock, U.w(tp.memBlockBits)))
+                 for _ in range(tp.tensorLength)]
+        no_mask = Wire(Vec(tp.numMemBlock, Bool))
+        for i in range(tp.numMemBlock):
+            no_mask <<= Bool(True)
+
+        for i in range(tp.tensorLength):
+            for j in range(tp.numMemBlock):
+                wmask[i][j] <<= tag == U(j)
+                wdata[i][j] <<= Mux(isZeroPad, U(0), io.vme_rd_data_bits)
+
 
     return TensorLoad()
