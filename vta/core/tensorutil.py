@@ -42,7 +42,7 @@ class TensorParams(Bundle_Helper):
             self.memDepth = self.p.outMemDepth
 
         self.memBlockBits = self.sp.memParams.dataBits
-        self.numMemBlock = (self.tensorWidth * self.tensorElemBits) / self.memBlockBits
+        self.numMemBlock = int((self.tensorWidth * self.tensorElemBits) / self.memBlockBits)
 
         self.memAddrBits = int(ceil(log(self.memDepth, 2)))
 
@@ -66,13 +66,13 @@ class TensorClient(TensorParams):
                 self.idx = flipped(valid(U.w(inner_memAddrBits)))
                 self.data = valid(Vec(inner_tensorLength, Vec(inner_tensorWidth, U.w(inner_tensorElemBits))))
 
-        class WR(Bundle_Helper):
+        class WR(BaseType):
             def __init__(self):
-                self.idx = flipped(valid(U.w(inner_memAddrBits)))
-                self.data = flipped(valid(Vec(inner_tensorLength, Vec(inner_tensorWidth, U.w(inner_tensorElemBits)))))
+                self.idx = U.w(inner_memAddrBits)
+                self.data = Vec(inner_tensorLength, Vec(inner_tensorWidth, U.w(inner_tensorElemBits)))
 
         self.rd = RD()
-        self.wr = WR()
+        self.wr = flipped(valid(WR()))
 
 
 # TensorDataCtrl. Data controller for TensorLoad
@@ -103,13 +103,13 @@ def tensordatactrl(tensorType: str = "none", sizeFactor: int = 1, strideFactor: 
         len = Reg(U.w(mp.lenBits))
         maskOffset = U.w(M_DRAM_OFFSET_BITS)(2 ** M_DRAM_OFFSET_BITS - 1)   # All 1
         if tensorType == "inp":
-            elemBytes = p.batch * p.blockIn * p.inpBits / 8
+            elemBytes = int(p.batch * p.blockIn * p.inpBits / 8)
         elif tensorType == "wgt":
-            elemBytes = p.blockOut * p.blockIn * p.wgtBits / 8
+            elemBytes = int(p.blockOut * p.blockIn * p.wgtBits / 8)
         else:
-            elemBytes = p.batch * p.blockOut * p.accBits / 8
+            elemBytes = int(p.batch * p.blockOut * p.accBits / 8)
 
-        xmax_bytes = U((1 << mp.lenBits) * mp.dataBits / 8)
+        xmax_bytes = U(int((1 << mp.lenBits) * mp.dataBits / 8))
         xcnt = Reg(U.w(mp.lenBits))
         xrem = Reg(U.w(M_SIZE_BITS))
         xsize = (dec.xsize << U(log2ceil(sizeFactor)) - U(1))

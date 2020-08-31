@@ -27,7 +27,7 @@ def tensorload(tensorType: str = "none", debug: bool = False):
     class TensorLoad_IO(Bundle_Helper):
         def __init__(self):
             self.start = Input(Bool)
-            self.done = Input(Bool)
+            self.done = Output(Bool)
             self.inst = Input(U.w(INST_BITS))
             self.baddr = Input(U.w(mp.addrBits))
             self.vme_rd = VMEReadMaster()
@@ -48,7 +48,11 @@ def tensorload(tensorType: str = "none", debug: bool = False):
         xPadCtrl1 = tensorpadctrl("XPad1", sizeFactor)
 
         tag = Reg(U.w(log2ceil(tp.numMemBlock)))
-        set = Reg(U.w(log2ceil(tp.tensorLength)))
+
+        if tp.tensorLength == 1:
+            set = Reg(U.w(1))
+        else:
+            set = Reg(U.w(log2ceil(tp.tensorLength)))
 
         sIdle, sYPad0, sXPad0, sReadCmd, sReadData, sXPad1, sYPad1 = [U(i) for i in range(7)]
         state = RegInit(U.w(3)(0))      # val state = RegInit(sIdle)
@@ -149,7 +153,7 @@ def tensorload(tensorType: str = "none", debug: bool = False):
 
         # read-from-dram
         io.vme_rd_cmd_valid <<= state == sReadCmd
-        io.vme_rd_vmd_bits_addr <<= dataCtrl.io.addr
+        io.vme_rd_cmd_bits_addr <<= dataCtrl.io.addr
         io.vme_rd_cmd_bits_len <<= dataCtrl.io.len      # AXI burst transmit length
 
         io.vme_rd_data_ready <<= state == sReadData
@@ -176,7 +180,7 @@ def tensorload(tensorType: str = "none", debug: bool = False):
         with when(state == sIdle):
             waddr_cur <<= dec.sram_offset
             waddr_nxt <<= dec.sram_offset
-        with elsewhen((vme_data_fire() | isZeroPad) &
+        with elsewhen((vme_data_fire | isZeroPad) &
                       (set == U(tp.tensorLength - 1)) &
                       (tag == U(tp.numMemBlock - 1))):
             waddr_cur <<= waddr_cur + U(1)
@@ -192,7 +196,7 @@ def tensorload(tensorType: str = "none", debug: bool = False):
                  for _ in range(tp.tensorLength)]
         no_mask = Wire(Vec(tp.numMemBlock, Bool))
         for i in range(tp.numMemBlock):
-            no_mask <<= Bool(True)
+            no_mask[i] <<= Bool(True)
 
         for i in range(tp.tensorLength):
             for j in range(tp.numMemBlock):
@@ -204,33 +208,49 @@ def tensorload(tensorType: str = "none", debug: bool = False):
             tdata = Wire(Vec(tp.numMemBlock, U.w(tp.memBlockBits)))
             tempcat = Wire(U.w(tp.numMemBlock * tp.memBlockBits))
             tempcat <<= CatBits(*(io.tensor_wr_bits_data[i]))
-            for i in range(tp.numMemBlock):
-                tdata[i] <<= tempcat[(i+1)*tp.memBlockBits-1:i*tp.memBlockBits]
+            for k in range(tp.numMemBlock):
+                tdata[k] <<= tempcat[(k+1)*tp.memBlockBits-1:k*tp.memBlockBits]
 
             muxWen = Mux(state == sIdle,
                          io.tensor_wr_valid,
                          (vme_data_fire | isZeroPad) & (set == U(i)))
             muxWaddr = Mux(state == sIdle, io.tensor_wr_bits_idx, waddr_cur)
-            muxWdata = Mux(state == sIdle, tdata, wdata[i])
-            muxWmask = Mux(state == sIdle, no_mask, wmask[i])
+            # muxWdata = Mux(state == sIdle, tdata, wdata[i])
+            # muxWmask = Mux(state == sIdle, no_mask, wmask[i])
             with when(muxWen):
-                Mem_maskwrite(tensorFile[i][muxWaddr], muxWdata, muxWmask, tp.numMemBlock)
+                with when(state == sIdle):
+                    Mem_maskwrite(tensorFile[i][io.tensor_wr_bits_idx], tdata, no_mask, tp.numMemBlock)
+                with otherwise():
+                    Mem_maskwrite(tensorFile[i][muxWaddr], wdata[i], wmask[i], tp.numMemBlock)
 
         # read-from-sram
         rvalid = RegInit(Bool(False))
         rvalid <<= io.tensor_rd_idx_valid
         io.tensor_rd_data_valid <<= rvalid
 
-        rdata = tensorFile[io.tensor_rd_idx_bits]
+        '''
+        Reconstruct the following code:
+        val rdata =
+            tensorFile.map(_.read(io.tensor.rd.idx.bits, io.tensor.rd.idx.valid))
+        rdata.zipWithIndex.foreach {
+            case (r, i) =>
+                io.tensor.rd.data.bits(i) := r.asUInt.asTypeOf(io.tensor.rd.data.bits(i))
+        }  
+        '''
         tio = TensorLoad_IO()
-        trdata = Wire(Vec(tio.tensor.tensorWidth, U.w(tio.tensor.tensorElemBits)))
-        temprcat = Wire(U.w(tp.numMemBlock * tp.memBlockBits))
-        temprcat <<= CatBits(*rdata)
-        for i in range(tio.tensor.tensorWidth):
-            trdata[i] <<= temprcat[(i+1)*tio.tensor.tensorElemBits-1:i*tio.tensor.tensorElemBits]
+        for i in range(tp.tensorLength):
+            with when(io.tensor_rd_idx_valid):
+                rdata = tensorFile[i][io.tensor_rd_idx_bits]
+                trdata = Wire(Vec(tio.tensor.tensorWidth, U.w(tio.tensor.tensorElemBits)))
+                temprcat = Wire(U.w(tp.numMemBlock * tp.memBlockBits))
+                temprcat <<= CatBits(*rdata)
+                for k in range(tio.tensor.tensorWidth):
+                    trdata[k] <<= temprcat[(k+1)*tio.tensor.tensorElemBits-1:k*tio.tensor.tensorElemBits]
 
-        # TODO: May cause problems
-        io.tensor_rd_data_bits[io.tensor_rd_idx_bits] <<= trdata
+                io.tensor_rd_data_bits[i] <<= trdata
+            with otherwise():
+                for j in range(tio.tensor.tensorWidth):
+                    io.tensor_rd_data_bits[i][j] <<= U(0)
 
         # Done
         done_no_pad = vme_data_fire & dataCtrl.io.done & \
@@ -241,3 +261,7 @@ def tensorload(tensorType: str = "none", debug: bool = False):
         io.done <<= done_no_pad | done_x_pad | done_y_pad
 
     return TensorLoad()
+
+
+if __name__ == '__main__':
+    Emitter.dumpVerilog(Emitter.dump(Emitter.emit(tensorload("inp")), "TensorLoad.fir"))

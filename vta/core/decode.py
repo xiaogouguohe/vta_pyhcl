@@ -41,7 +41,7 @@ class MemDecode(BaseType):
 
 class MemDecode_Div:
     def __init__(self, inst):
-        self.xpad_1 = inst[hxpad_1[1]:hxpad_0[0]]
+        self.xpad_1 = inst[hxpad_1[1]:hxpad_1[0]]
         self.xpad_0 = inst[hxpad_0[1]:hxpad_0[0]]
         self.ypad_1 = inst[hypad_1[1]:hypad_1[0]]
         self.ypad_0 = inst[hypad_0[1]:hypad_0[0]]

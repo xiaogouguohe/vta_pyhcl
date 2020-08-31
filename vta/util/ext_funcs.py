@@ -10,6 +10,7 @@ from math import *
 #     dataBits = ShellKey().memParams.dataBits
 #     data = U.w(dataBits)
 from pyhcl.core._meta_pub import Pub
+from pyhcl.core._repr import CType
 
 
 class BaseType:
@@ -64,13 +65,13 @@ def decoupled(basetype):
     coupled.valid = Output(Bool)
     coupled.ready = Input(Bool)
 
-    if isinstance(basetype, type):
+    if isinstance(basetype, CType) or isinstance(basetype, type):
         coupled.bits = Output(basetype)
     elif isinstance(basetype, BaseType):
         coupled.bits = Bundle_Helper()
         dic = basetype.__dict__
         for keys in dic:
-            if isinstance(dic[keys], type):
+            if isinstance(dic[keys], CType) or isinstance(dic[keys], type):
                 coupled.bits.__dict__[keys] = Output(dic[keys])
 
     return coupled
@@ -80,7 +81,7 @@ def valid(basetype):
     coupled = Bundle_Helper()
     coupled.valid = Output(Bool)
 
-    if isinstance(basetype, type):
+    if isinstance(basetype, CType) or isinstance(basetype, type):
         coupled.bits = Output(basetype)
     elif isinstance(basetype, Vec):
         coupled.bits = Output(basetype)
@@ -88,7 +89,7 @@ def valid(basetype):
         coupled.bits = Bundle_Helper()
         dic = basetype.__dict__
         for keys in dic:
-            if isinstance(dic[keys], type):
+            if isinstance(dic[keys], CType) or isinstance(dic[keys], type):
                 coupled.bits.__dict__[keys] = Output(dic[keys])
 
     return coupled
@@ -116,5 +117,5 @@ def log2ceil(v):
 def Mem_maskwrite(m, data, mask, length):
     for i in range(length):
         with when(~(mask[i])):
-            data[i] = U(0)
+            data[i] <<= U(0)
     m <<= data
