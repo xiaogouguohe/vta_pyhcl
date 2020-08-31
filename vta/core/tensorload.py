@@ -198,6 +198,46 @@ def tensorload(tensorType: str = "none", debug: bool = False):
             for j in range(tp.numMemBlock):
                 wmask[i][j] <<= tag == U(j)
                 wdata[i][j] <<= Mux(isZeroPad, U(0), io.vme_rd_data_bits)
+            # val tdata = io.tensor.wr.bits.data(i).asUInt.asTypeOf(wdata(i))
+            # To do the same operation of asTypeOf, first we merge data(i)
+            # sizeof(data(i)) === sizeof(wdata(i))
+            tdata = Wire(Vec(tp.numMemBlock, U.w(tp.memBlockBits)))
+            tempcat = Wire(U.w(tp.numMemBlock * tp.memBlockBits))
+            tempcat <<= CatBits(*(io.tensor_wr_bits_data[i]))
+            for i in range(tp.numMemBlock):
+                tdata[i] <<= tempcat[(i+1)*tp.memBlockBits-1:i*tp.memBlockBits]
 
+            muxWen = Mux(state == sIdle,
+                         io.tensor_wr_valid,
+                         (vme_data_fire | isZeroPad) & (set == U(i)))
+            muxWaddr = Mux(state == sIdle, io.tensor_wr_bits_idx, waddr_cur)
+            muxWdata = Mux(state == sIdle, tdata, wdata[i])
+            muxWmask = Mux(state == sIdle, no_mask, wmask[i])
+            with when(muxWen):
+                Mem_maskwrite(tensorFile[i][muxWaddr], muxWdata, muxWmask, tp.numMemBlock)
+
+        # read-from-sram
+        rvalid = RegInit(Bool(False))
+        rvalid <<= io.tensor_rd_idx_valid
+        io.tensor_rd_data_valid <<= rvalid
+
+        rdata = tensorFile[io.tensor_rd_idx_bits]
+        tio = TensorLoad_IO()
+        trdata = Wire(Vec(tio.tensor.tensorWidth, U.w(tio.tensor.tensorElemBits)))
+        temprcat = Wire(U.w(tp.numMemBlock * tp.memBlockBits))
+        temprcat <<= CatBits(*rdata)
+        for i in range(tio.tensor.tensorWidth):
+            trdata[i] <<= temprcat[(i+1)*tio.tensor.tensorElemBits-1:i*tio.tensor.tensorElemBits]
+
+        # TODO: May cause problems
+        io.tensor_rd_data_bits[io.tensor_rd_idx_bits] <<= trdata
+
+        # Done
+        done_no_pad = vme_data_fire & dataCtrl.io.done & \
+                      (dec.xpad_1 == U(0)) & (dec.ypad_1 == U(0))
+        done_x_pad = (state == sXPad1) & xPadCtrl1.io.done & dataCtrlDone & \
+                     (dec.ypad_1 == U(0))
+        done_y_pad = (state == sYPad1) & dataCtrlDone & yPadCtrl1.io.done
+        io.done <<= done_no_pad | done_x_pad | done_y_pad
 
     return TensorLoad()

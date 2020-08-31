@@ -111,3 +111,10 @@ def flipped(bundle):
 
 def log2ceil(v):
     return ceil(log(v, 2))
+
+
+def Mem_maskwrite(m, data, mask, length):
+    for i in range(length):
+        with when(~(mask[i])):
+            data[i] = U(0)
+    m <<= data
