@@ -18,12 +18,9 @@
 # * sized (entries_q), depending on the maximum burst allowed in the memory.
 
 
-from pyhcl import *
 from vta.core.decode import FetchDecode
 from vta.core.isa import *
-from vta.shell.parameters import *
 from vta.shell.vme import *
-from vta.util.ext_funcs import *
 from vta.util.selfqueue import *
 
 

@@ -10,15 +10,13 @@
     loading 1D and 2D tensors to scratchpads, so it can be used by
     other modules such as Compute.
 """
-from pyhcl import *
 from vta.core.decode import LoadDecode
 from vta.core.isa import *
 from vta.core.semaphore import semaphore
 from vta.core.tensorutil import TensorClient
-from vta.shell.parameters import *
-from vta.util.ext_funcs import *
 from vta.shell.vme import *
 from vta.util.selfqueue import queue
+from vta.core.tensorload import tensorload
 
 
 def load(debug: bool = False):
@@ -53,7 +51,44 @@ def load(debug: bool = False):
 
         tensorType = ["inp", "wgt"]
         tensorDec = [dec.io.isInput, dec.io.isWeight]
-        
+
+        tensorLoad = [tensorload(tensorType[i]) for i in range(2)]
+
+        start = inst_q.io.deq_valid & Mux(dec.io.pop_next, s.io.sready, Bool(True))
+        done = Mux(dec.io.isInput, tensorLoad[0].io.done, tensorLoad[1].io.done)
+
+        # control
+        with when(state == sIdle):
+            with when(start):
+                with when(dec.io.isSync):
+                    state <<= sSync
+                with elsewhen(dec.io.isInput | dec.io.isWeight):
+                    state <<= sExe
+        with elsewhen(state == sSync):
+            state <<= sIdle
+        with elsewhen(state == sExe):
+            with when(done):
+                state <<= sIdle
+
+        # instructions
+        # inst_q.io.enq <> io.inst
+        io.inst_ready <<= inst_q.io.enq_ready
+        inst_q.io.enq_valid <<= io.inst_valid
+        inst_q.io.enq_bits <<= io.inst_bits
+        inst_q.io.deq_ready <<= ((state == sExe) & done) | (state == sSync)
+
+        # load tensor
+        # [0] input (inp)
+        # [1] weight (wgt)
+        ptr = [io.inp_baddr, io.wgt_baddr]
+        # val tsor = Seq(io.inp, io.wgt)
+        for i in range(2):
+            tensorLoad[i].io.start <<= (state == sIdle) & start & tensorDec[i]
+            tensorLoad[i].io.inst <<= inst_q.io.deq_bits
+            tensorLoad[i].io.baddr <<= ptr[i]
+
+            # tensorLoad(i).io.tensor <> tsor(i)
+
 
     return Load()
 

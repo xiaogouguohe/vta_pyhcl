@@ -3,9 +3,6 @@
 # Date:   2020-06-08
 
 
-from pyhcl import *
-from vta.core.decode import MemDecode_Div
-from vta.core.isa import *
 from vta.core.tensorutil import *
 from vta.shell.vme import VMEReadMaster
 
