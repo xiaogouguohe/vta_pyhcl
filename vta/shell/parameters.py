@@ -1,7 +1,9 @@
 # File to contains paramters
 # Author: SunnyChen
 # Date:   2020-05-25
-from vta.interface_axi.axi import AXIParams
+import sys 
+sys.path.append("..") 
+from interface_axi.axi import AXIParams
 
 
 class VMEParams:
@@ -18,6 +20,7 @@ class VCRParams:
     nECnt = 1
     nVals = 1
     nPtrs = 6
+    nUCnt = 1
     regBits = 32
 
 

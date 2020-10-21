@@ -1,9 +1,12 @@
 # Hardware queue implementation of Chisel3 library (Decoupled.scala)
 # Author: SunnyChen
 # Date: 2020-05-26
+import sys 
+sys.path.append("..") 
+
 from math import *
 from pyhcl import *
-from vta.util.ext_funcs import *
+from util.ext_funcs import *
 
 
 def ispow2(n):

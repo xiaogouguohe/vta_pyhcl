@@ -2,8 +2,11 @@
 # Author: SunnyChen
 # Date:   2020-05-26
 from pyhcl import *
-from vta.core.isa import *
-from vta.util.ext_funcs import BaseType
+import sys 
+sys.path.append("..") 
+
+from core.isa import *
+from util.ext_funcs import BaseType
 
 """
     MemDecode

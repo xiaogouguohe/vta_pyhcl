@@ -46,35 +46,35 @@ class AXIParams:
         self.qosConst: int = 0
         self.regionConst: int = 0
 
-class AXIBase(GenericParameterizedBundle):
-    def __init__(self, params):
-        super().__init__(params)
+#class AXIBase(Bundle_Helper):
+class AXIBase(BaseType):
+    pass
 
 class AXILiteAddress(AXIBase):
-    def __init__(self, params):
-        super().__init__(params)
+    def __init__(self):
+        params = AXIParams()
         self.addr = U.w(params.addrBits)
 
 class AXILiteWriteData(AXIBase):
-    def __init__(self, params):
-        super().__init__(params)
+    def __init__(self):
+        params = AXIParams()
         self.data = U.w(params.dataBits)
         self.strb = U.w(params.strbBits)
 
 class AXILiteWriteResponse(AXIBase):
-    def __init__(self, params):
-        super().__init__(params)
+    def __init__(self):
+        params = AXIParams()
         self.resp = U.w(params.respBits)
 
 class AXILiteReadData(AXIBase):
-    def __init__(self, params):
-        super().__init__(params)
+    def __init__(self):
+        params = AXIParams()
         self.data = U.w(params.dataBits)
         self.resp = U.w(params.respBits)
 
 class AXILiteMaster(AXIBase):
-    def __init__(self, params):
-        super().__init__(params)
+    def __init__(self):
+        params = AXIParams()
         self.aw = decoupled(AXILiteAddress(params))
         self.w = decoupled(AXILiteWriteData(params))
         self.b = flipped(decoupled(AXILiteWriteResponse(params)))
@@ -93,13 +93,12 @@ class AXILiteMaster(AXIBase):
         self.r.ready = Bool(False)
 
 class AXILiteClient(AXIBase):
-    def __init__(self, params):
-        super().__init__(params)
-        self.aw = flipped(decoupled(AXILiteAddress(params)))
-        self.w = flipped(decoupled(AXILiteWriteData(params)))
-        self.b = decoupled(AXILiteWriteResponse(params))
-        self.ar = flipped(decoupled(AXILiteAddress(params)))
-        self.r = decoupled(AXILiteReadData(params))
+    def __init__(self):
+        self.aw = flipped(decoupled(AXILiteAddress()))
+        self.w = flipped(decoupled(AXILiteWriteData()))
+        self.b = decoupled(AXILiteWriteResponse())
+        self.ar = flipped(decoupled(AXILiteAddress()))
+        self.r = decoupled(AXILiteReadData())
 
     def tieoff(self):
         self.aw.ready = Bool(False)
@@ -112,8 +111,8 @@ class AXILiteClient(AXIBase):
         self.r.bits.data = U(0)
 
 class AXIAddress(AXILiteAddress):
-    def __init__(self, params):
-        super().__init__(params)
+    def __init__(self):
+        params = AXIParams()
         self.params = params
         self.id = U.w(params.idBits)
         self.user = U.w(params.userBits)
@@ -127,28 +126,28 @@ class AXIAddress(AXILiteAddress):
         self.region = U.w(params.regionBits)
 
 class AXIWriteData(AXILiteWriteData):
-    def __init__(self, params):
-        super().__init__(params)
+    def __init__(self):
+        params = AXIParams()
         self.last = Bool
         self.id = U.w(params.idBits)
         self.user = U.w(params.userBits)
 
 class AXIWriteResponse(AXILiteWriteResponse):
-    def __init__(self, params):
-        super().__init__(params)
+    def __init__(self):
+        params = AXIParams()
         self.id = U.w(params.idBits)
         self.user = U.w(params.userBits)
 
 class AXIReadData(AXILiteReadData):
-    def __init__(self, params):
-        super().__init__(params)
+    def __init__(self):
+        params = AXIParams()
         self.last = Bool
         self.id = U.w(params.idBits)
         self.user = U.w(params.userBits)
 
 class AXIMaster(AXIBase):
-    def __init__(self, params):
-        super().__init__(params)
+    def __init__(self):
+        params = AXIParams()
         self.aw = decoupled(AXIAddress(params))
         self.w = decoupled(AXIWriteData(params))
         self.b = flipped(decoupled(AXIWriteResponse(params)))
@@ -213,8 +212,8 @@ class AXIMaster(AXIBase):
         self.ar.bits.id = U(params.idConst)
 
 class AXIClient(AXIBase):
-    def __init__(self, params):
-        super().__init__(params)
+    def __init__(self):
+        params = AXIParams()
         self.aw = flipped(decoupled(AXIAddress(params)))
         self.w = flipped(decoupled(AXIWriteData(params)))
         self.b = decoupled(AXIWriteResponse(params))
@@ -237,8 +236,8 @@ class AXIClient(AXIBase):
         self.r.bits.id = U(0)
 
 class XilinxAXILiteClient(AXIBase):
-    def __init__(self, params):
-        super().__init__(params)
+    def __init__(self):
+        params = AXIParams()
         self.AWVALID = Input(Bool())
         self.AWREADY = Output(Bool())
         self.AWADDR = Input(U.w(params.addrBits))
@@ -258,8 +257,8 @@ class XilinxAXILiteClient(AXIBase):
         self.RRESP = Output(U.w(params.respBits))
 
 class XilinxAXIMaster(AXIBase):
-    def __init__(self, params):
-        super().__init__(params)
+    def __init__(self):
+        params = AXIParams()
         self.AWVALID = Output(Bool())
         self.AWREADY = Input(Bool())
         self.AWADDR = Output(U.w(params.addrBits))

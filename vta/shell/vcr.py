@@ -23,68 +23,55 @@ from util.ext_funcs import *
     def __init__(self, p):
         super().__init__(p) """
         
-class VCRBase(GenericParameterizedBundle):
-    def __init__(self, p):
-        super().__init__(p) 
+class VCRBase(BaseType):
+    pass
         
-
 class VCRMaster(VCRBase):
-    def __init__(self, p): #p ShellParams or ShellKey
-        super().__init__(p)
+    def __init__(self): #p ShellParams or ShellKey
+        p = ShellKey()
         vp = p.vcrParams
         mp = p.memParams
         launch = Output(Bool)
         finish = Input(Bool)
-        #ecnt = Vec(vp.nECnt, flipped(ValidIO(U.w(vp.regBits)))) 怎么改？
-        ecnt = Vec(vp.nECnt, flipped(U.w(vp.regBits)))
+        ecnt = Vec(vp.nECnt, flipped(valid(U.w(vp.regBits)))) 
         vals = Output(Vec(vp.nVals, U.w(vp.regBits)))
         ptrs = Output(Vec(vp.nPtrs, U.w(mp.addrBits)))
-        #ucnt = Vec(vp.nUCnt, flipped(ValidIO(U.w(vp.regBits))))
-        ucnt = Vec(vp.nUCnt, flipped(U.w(vp.regBits)))
+        ucnt = Vec(vp.nUCnt, flipped(valid(U.w(vp.regBits))))
 
 class VCRClient(VCRBase):
-    def __init__(self, p): #p ShellParams or ShellKey
-        super().__init__(p)
+    def __init__(self): #p ShellParams or ShellKey
+        p = ShellKey()
         vp = p.vcrParams
         mp = p.memParams
         launch = Input(Bool)
         finish = Output(Bool)
-        #ecnt = Vec(vp.nECnt, ValidIO(UInt(vp.regBits.W)))
-        ecnt = Vec(vp.nECnt, U.w(vp.regBits))
+        ecnt = Vec(vp.nECnt, valid(UInt(vp.regBits.W)))
         vals = Input(Vec(vp.nVals, U.w(vp.regBits)))
         ptrs = Input(Vec(vp.nPtrs, U.w(mp.addrBits)))
-        #ucnt = Vec(vp.nUCnt, ValidIO(UInt(vp.regBits.W)))
-        ucnt = Vec(vp.nUCnt, U.w(vp.regBits))
+        ucnt = Vec(vp.nUCnt, valid(UInt(vp.regBits.W)))
 
 class VCR_IO(Bundle_Helper):
     def __init__(self):
-        self.host = AXILiteClient(p.hostParams),
-        self.vcr = VCRMaster(p)
+        #p = ShellKey()
+        self.host = AXILiteClient()
+        self.vcr = VCRMaster()
 
 class VCR(Module):
-    ''' val io = IO(new Bundle {
-        val host = new AXILiteClient(p(ShellKey).hostParams)
-        val vcr = new VCRMaster
-    }) '''
+    io = mapper(VCR_IO())
+    print(type(io))
+
+    """ for k in io:
+        print(k)  """
 
     p = ShellKey()
-    io = IO(
-        #tmp = decoupled(AXILiteAddress(p.hostParams)),
-        host = AXILiteClient(p.hostParams),
-        vcr = VCRMaster(p)
-    ) 
-
-    #tmp2 = io.tmp
-    #wdata = io.host
 
     vp = p.vcrParams
     mp = p.memParams
     hp = p.hostParams
 
     # Write control (AW, W, B)
-    #waddr = RegInit(U.w(hp.addrBits)(0xffff)) # init with invalid address
-    #a = host3
-    #wdata = io.host.w.bits.data
+    waddr = RegInit(U.w(hp.addrBits)(0xffff)) # init with invalid address
+    #wdata = io.host_w_bits_data
     #sWriteAddress :: sWriteData :: sWriteResponse :: Nil = Enum(3)
     #wstate = RegInit(sWriteAddress)
 

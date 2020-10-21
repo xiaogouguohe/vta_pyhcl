@@ -17,11 +17,14 @@
 # * more than one instruction at the time. Finally, the instruction queue is
 # * sized (entries_q), depending on the maximum burst allowed in the memory.
 
+import sys 
+sys.path.append("..") 
 
-from vta.core.decode import FetchDecode
-from vta.core.isa import *
-from vta.shell.vme import *
-from vta.util.selfqueue import *
+from pyhcl import *
+from core.decode import FetchDecode
+from core.isa import *
+from shell.vme import *
+from util.selfqueue import *
 
 
 def fetch(debug: bool = False):
@@ -159,4 +162,7 @@ def fetch(debug: bool = False):
 
 
 if __name__ == '__main__':
-    Emitter.dumpVerilog(Emitter.dump(Emitter.emit(fetch()), "fetch.fir"))
+    #Emitter.dumpVerilog(Emitter.dump(Emitter.emit(fetch()), "fetch.fir"))
+    #Emitter.dumpVerilog(Emitter.dump(Emitter.emit(fetch()), "fetch.fir"))
+    fetch()
+    

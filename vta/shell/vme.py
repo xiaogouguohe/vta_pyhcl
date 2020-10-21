@@ -2,10 +2,12 @@
 # Author: SunnyChen
 # Date:   2020-05-25
 
+import sys 
+sys.path.append("..") 
 
 from pyhcl import *
-from vta.shell.parameters import *
-from vta.util.ext_funcs import *
+from shell.parameters import *
+from util.ext_funcs import *
 
 
 # VMECmd

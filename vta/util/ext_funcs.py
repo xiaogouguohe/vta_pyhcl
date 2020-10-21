@@ -26,18 +26,23 @@ def mapper_helper(bundle, dic=None, prefix=""):
     tdic = {} if dic is None else dic
 
     for k in bundle.__dict__:
+        print("k:", k)
         v = bundle.__dict__[k]
+        print(type(v))
         if isinstance(v, Pub):
+            print("v is Pub")
             if prefix == "":
                 tdic[k] = v
             else:
                 tdic[prefix+"_"+k] = v
         elif isinstance(v, Bundle_Helper):
+            print("v is Bundle_Helper")
             if prefix == "":
                 mapper_helper(v, tdic, k)
             else:
                 mapper_helper(v, tdic, prefix+"_"+k)
         elif isinstance(v, List):
+            print("v is List")
             for i in range(len(v)):
                 if isinstance(v[i], Pub):
                     if prefix == "":
@@ -49,9 +54,15 @@ def mapper_helper(bundle, dic=None, prefix=""):
                         mapper_helper(v[i], tdic, k+"_"+str(i))
                     else:
                         mapper_helper(v[i], tdic, prefix+"_"+k+"_"+str(i))
+        else:
+            print("v is else")
+            pass
 
+    print("=====>")
+    for k in tdic:
+        print(k, tdic[k])
+    print("<=====") 
     return tdic
-
 
 def mapper(bundle):
     dct = mapper_helper(bundle)
