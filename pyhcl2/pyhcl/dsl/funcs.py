@@ -26,8 +26,49 @@ def Sum(vec):
 
 def OneDimensionalization(vec):
     a = vec
-    for _ in range(a.typ.lvl - 1):
+    lvl = a.lvl
+    for _ in range(lvl - 1):
         a = a.flatten()
     return a
 
 
+def Decoupled(typ):
+    from .bundle import Bundle
+    from .cdatatype import U
+    return Bundle(
+        valid = U.w(1), #Output
+        ready = U.w(1).flip(), #Input
+        bits = typ
+    )
+
+
+def Valid(typ):
+    from .bundle import Bundle
+    from .cdatatype import U
+    from .cio import Output
+    from ..core._repr import CType
+    from .vector import Vec
+
+    coupled = Bundle(
+        valid=U.w(1),
+        bits=Output(typ)
+    )
+
+    if isinstance(typ, CType) or isinstance(typ, type):
+        coupled.bits = Output(typ)
+    elif isinstance(typ, Vec):
+        coupled.bits = Output(typ)
+    #elif isinstance(typ, List):
+        #print("basetype:", basetype)
+        #print("type(basetype)", type(basetype))
+        #print("len(basetype):", len(basetype))
+        #coupled.bits = [Output(basetype[i]) for i in range(len(basetype))]
+        coupled.bits = Output(typ)
+    elif isinstance(typ, Bundle):
+        coupled.bits = Bundle()
+        dic = typ.__dict__
+        for keys in dic:
+            #coupled.bits.__dict__[keys] = valid(keys)
+            if isinstance(dic[keys], CType) or isinstance(dic[keys], type):
+                coupled.bits.__dict__[keys] = Output(dic[keys])
+    return coupled

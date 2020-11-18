@@ -47,39 +47,46 @@ class AXIParams:
         self.regionConst: int = 0
 
 #class AXIBase(Bundle_Helper):
-class AXIBase(Bundle_Helper):
-    pass
+class AXIBase(Bundle):
+    def __int__(self):
+        super().__init__()
+        pass
 
 class AXILiteAddress(AXIBase):
     def __init__(self):
+        super().__init__()
         params = AXIParams()
         self.addr = U.w(params.addrBits)
 
 class AXILiteWriteData(AXIBase):
     def __init__(self):
+        super().__init__()
         params = AXIParams()
         self.data = U.w(params.dataBits)
         self.strb = U.w(params.strbBits)
 
 class AXILiteWriteResponse(AXIBase):
     def __init__(self):
+        super().__init__()
         params = AXIParams()
         self.resp = U.w(params.respBits)
 
 class AXILiteReadData(AXIBase):
     def __init__(self):
+        super().__init__()
         params = AXIParams()
         self.data = U.w(params.dataBits)
         self.resp = U.w(params.respBits)
 
 class AXILiteMaster(AXIBase):
     def __init__(self):
+        super.__init__()
         params = AXIParams()
-        self.aw = decoupled(AXILiteAddress())
-        self.w = decoupled(AXILiteWriteData())
-        self.b = flipped(decoupled(AXILiteWriteResponse()))
-        self.ar = decoupled(AXILiteAddress())
-        self.r = flipped(decoupled(AXILiteReadData()))
+        #self.aw = Decoupled(AXILiteAddress())
+        #self.w = Decoupled(AXILiteWriteData())
+        self.b = Flip(Decoupled(AXILiteWriteResponse()))
+        #self.ar = Decoupled(AXILiteAddress())
+        #self.r = Flip(Decoupled(AXILiteReadData()))
 
     def tieoff(self):
         self.aw.valid = Bool(False)
@@ -94,11 +101,12 @@ class AXILiteMaster(AXIBase):
 
 class AXILiteClient(AXIBase):
     def __init__(self):
-        self.aw = flipped(decoupled(AXILiteAddress()))
-        self.w = flipped(decoupled(AXILiteWriteData()))
-        self.b = decoupled(AXILiteWriteResponse())
-        self.ar = flipped(decoupled(AXILiteAddress()))
-        self.r = decoupled(AXILiteReadData())
+        super().__init__()
+        self.aw = Flip(Decoupled(AXILiteAddress()))
+        self.w = Flip(Decoupled(AXILiteWriteData()))
+        self.b = Decoupled(AXILiteWriteResponse())
+        self.ar = Flip(Decoupled(AXILiteAddress()))
+        self.r = Decoupled(AXILiteReadData())
 
     def tieoff(self):
         self.aw.ready = Bool(False)
@@ -151,12 +159,13 @@ class AXIReadData(AXILiteReadData):
 
 class AXIMaster(AXIBase):
     def __init__(self):
+        super.__init__()
         params = AXIParams()
-        self.aw = decoupled(AXIAddress())
-        self.w = decoupled(AXIWriteData())
-        self.b = flipped(decoupled(AXIWriteResponse()))
-        self.ar = decoupled(AXIAddress())
-        self.r = flipped(decoupled(AXIReadData()))
+        self.aw = Decoupled(AXIAddress())
+        self.w = Decoupled(AXIWriteData())
+        self.b = Flip(Decoupled(AXIWriteResponse()))
+        self.ar = Decoupled(AXIAddress())
+        self.r = Flip(Decoupled(AXIReadData()))
 
     def tieoff(self):
         self.aw.valid = Bool(False)
@@ -217,12 +226,13 @@ class AXIMaster(AXIBase):
 
 class AXIClient(AXIBase):
     def __init__(self):
+        super.__init__()
         params = AXIParams()
-        self.aw = flipped(decoupled(AXIAddress()))
-        self.w = flipped(decoupled(AXIWriteData()))
-        self.b = decoupled(AXIWriteResponse())
-        self.ar = flipped(decoupled(AXIAddress()))
-        self.r = decoupled(AXIReadData())
+        self.aw = Flip(Decoupled(AXIAddress()))
+        self.w = Flip(Decoupled(AXIWriteData()))
+        self.b = Decoupled(AXIWriteResponse())
+        self.ar = Flip(Decoupled(AXIAddress()))
+        self.r = Decoupled(AXIReadData())
         #self.tieoff()
 
     def tieoff(self):
@@ -242,6 +252,7 @@ class AXIClient(AXIBase):
 
 class XilinxAXILiteClient(AXIBase):
     def __init__(self):
+        super.__init__()
         params = AXIParams()
         self.AWVALID = Input(Bool)
         self.AWREADY = Output(Bool)
@@ -263,6 +274,7 @@ class XilinxAXILiteClient(AXIBase):
 
 class XilinxAXIMaster(AXIBase):
     def __init__(self):
+        super.__init__()
         params = AXIParams()
         self.AWVALID = Output(Bool)
         self.AWREADY = Input(Bool)
@@ -311,5 +323,16 @@ class XilinxAXIMaster(AXIBase):
         self.RUSER = Input(U.w(params.userBits))
 
 if __name__ == '__main__':
-    #Emitter.dumpVerilog(Emitter.dump(Emitter.emit(AXIParams()), "AXIParams.fir"))
-    pass 
+    #axiBase = AXIBase()
+    #axiBase._kv
+    #axiLiteAddress = AXILiteAddress()
+    #axiLiteAddress._kv
+    #axiParams = AXIParams()
+    #axiLiteAddress = AXILiteAddress()
+    #axiLiteWriteResponse = AXILiteWriteResponse()
+    #print(type(axiLiteWriteResponse))
+    #print(isinstance(axiLiteWriteResponse, Bundle))
+    #axiLiteWriteResponse._kv
+    #Flip(axiLiteWriteResponse)
+    #axiLiteMaster = AXILiteMaster()
+    pass

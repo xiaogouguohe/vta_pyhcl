@@ -1,0 +1,14 @@
+        elif isinstance(self.ref.typ, Bundle): # add
+            print("in func __post_init__, is Bundle")
+            dic = self.ref.typ._kv
+            for key in dic:
+                print(key, dic[key])
+                if isinstance(dic[key], CType) or isinstance(dic[key], type):
+                    print("is Ctype")
+                    self._kv.key = dic[key]
+                elif isinstance(dic[key], Vec):
+                    print("is Vec")
+                    self._kv.key = dic[key]
+                elif isinstance(dic[key], Bundle):
+                    print("is Bundle")
+                    self._kv.key = dic[key]

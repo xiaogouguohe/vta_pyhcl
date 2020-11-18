@@ -39,10 +39,10 @@ def mapper_helper(bundle, dic=None, prefix=""):
             print("v is Bundle_Helper")
             if prefix == "":
                 mapper_helper(v, tdic, k)
-                tdic[k] = v
+                #tdic[k] = v
             else:
                 mapper_helper(v, tdic, prefix+"_"+k)
-                tdic[prefix+"_"+k] = v
+                #tdic[prefix+"_"+k] = v
         elif isinstance(v, List): #List
             print("v is List")
             for i in range(len(v)):
@@ -131,7 +131,6 @@ def flipped(bundle):
             dic[keys] = base_flipped(dic[keys])
         elif isinstance(dic[keys], Bundle_Helper):
             flipped(dic[keys])
-        
 
     return bundle
 

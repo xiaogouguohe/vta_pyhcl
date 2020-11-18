@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../PyChip-py-hcl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../incubator-tvm-vta" vcs="Git" />
   </component>
 </project>

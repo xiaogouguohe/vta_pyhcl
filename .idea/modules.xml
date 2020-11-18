@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../PyChip-py-hcl/.idea/PyChip-py-hcl.iml" filepath="$PROJECT_DIR$/../PyChip-py-hcl/.idea/PyChip-py-hcl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../incubator-tvm-vta/.idea/incubator-tvm-vta.iml" filepath="$PROJECT_DIR$/../incubator-tvm-vta/.idea/incubator-tvm-vta.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/vta-pyhcl.iml" filepath="$PROJECT_DIR$/.idea/vta-pyhcl.iml" />
     </modules>
   </component>
