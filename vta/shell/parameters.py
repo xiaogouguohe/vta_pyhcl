@@ -35,7 +35,6 @@ class ShellParams:
 class ShellKey(ShellParams):
     pass
 
-
 class CoreParams:
     batch: int = 1
     blockOut: int = 16

@@ -47,7 +47,7 @@ class AXIParams:
         self.regionConst: int = 0
 
 #class AXIBase(Bundle_Helper):
-class AXIBase(BaseType):
+class AXIBase(Bundle_Helper):
     pass
 
 class AXILiteAddress(AXIBase):
@@ -75,11 +75,11 @@ class AXILiteReadData(AXIBase):
 class AXILiteMaster(AXIBase):
     def __init__(self):
         params = AXIParams()
-        self.aw = decoupled(AXILiteAddress(params))
-        self.w = decoupled(AXILiteWriteData(params))
-        self.b = flipped(decoupled(AXILiteWriteResponse(params)))
-        self.ar = decoupled(AXILiteAddress(params))
-        self.r = flipped(decoupled(AXILiteReadData(params)))
+        self.aw = decoupled(AXILiteAddress())
+        self.w = decoupled(AXILiteWriteData())
+        self.b = flipped(decoupled(AXILiteWriteResponse()))
+        self.ar = decoupled(AXILiteAddress())
+        self.r = flipped(decoupled(AXILiteReadData()))
 
     def tieoff(self):
         self.aw.valid = Bool(False)
@@ -112,6 +112,7 @@ class AXILiteClient(AXIBase):
 
 class AXIAddress(AXILiteAddress):
     def __init__(self):
+        super().__init__()
         params = AXIParams()
         self.params = params
         self.id = U.w(params.idBits)
@@ -127,6 +128,7 @@ class AXIAddress(AXILiteAddress):
 
 class AXIWriteData(AXILiteWriteData):
     def __init__(self):
+        super().__init__()
         params = AXIParams()
         self.last = Bool
         self.id = U.w(params.idBits)
@@ -134,12 +136,14 @@ class AXIWriteData(AXILiteWriteData):
 
 class AXIWriteResponse(AXILiteWriteResponse):
     def __init__(self):
+        super().__init__()
         params = AXIParams()
         self.id = U.w(params.idBits)
         self.user = U.w(params.userBits)
 
 class AXIReadData(AXILiteReadData):
     def __init__(self):
+        super().__init__()
         params = AXIParams()
         self.last = Bool
         self.id = U.w(params.idBits)
@@ -148,11 +152,11 @@ class AXIReadData(AXILiteReadData):
 class AXIMaster(AXIBase):
     def __init__(self):
         params = AXIParams()
-        self.aw = decoupled(AXIAddress(params))
-        self.w = decoupled(AXIWriteData(params))
-        self.b = flipped(decoupled(AXIWriteResponse(params)))
-        self.ar = decoupled(AXIAddress(params))
-        self.r = flipped(decoupled(AXIReadData(params)))
+        self.aw = decoupled(AXIAddress())
+        self.w = decoupled(AXIWriteData())
+        self.b = flipped(decoupled(AXIWriteResponse()))
+        self.ar = decoupled(AXIAddress())
+        self.r = flipped(decoupled(AXIReadData()))
 
     def tieoff(self):
         self.aw.valid = Bool(False)
@@ -200,7 +204,7 @@ class AXIMaster(AXIBase):
         self.aw.bits.id = U(params.idConst)
         self.w.bits.id = U(params.idConst)
         self.w.bits.user = U(params.userConst)
-        self.w.bits.strb = Fill(params.strbBits, true.B) #?
+        self.w.bits.strb = Fill(params.strbBits, Bool(True)) #?
         self.ar.bits.user = U(params.userConst)
         self.ar.bits.burst = U(params.burstConst)
         self.ar.bits.lock = U(params.lockConst)
@@ -214,11 +218,12 @@ class AXIMaster(AXIBase):
 class AXIClient(AXIBase):
     def __init__(self):
         params = AXIParams()
-        self.aw = flipped(decoupled(AXIAddress(params)))
-        self.w = flipped(decoupled(AXIWriteData(params)))
-        self.b = decoupled(AXIWriteResponse(params))
-        self.ar = flipped(decoupled(AXIAddress(params)))
-        self.r = decoupled(AXIReadData(params))
+        self.aw = flipped(decoupled(AXIAddress()))
+        self.w = flipped(decoupled(AXIWriteData()))
+        self.b = decoupled(AXIWriteResponse())
+        self.ar = flipped(decoupled(AXIAddress()))
+        self.r = decoupled(AXIReadData())
+        #self.tieoff()
 
     def tieoff(self):
         self.aw.ready = Bool(False)
@@ -238,29 +243,29 @@ class AXIClient(AXIBase):
 class XilinxAXILiteClient(AXIBase):
     def __init__(self):
         params = AXIParams()
-        self.AWVALID = Input(Bool())
-        self.AWREADY = Output(Bool())
+        self.AWVALID = Input(Bool)
+        self.AWREADY = Output(Bool)
         self.AWADDR = Input(U.w(params.addrBits))
-        self.WVALID = Input(Bool())
-        self.WREADY = Output(Bool())
+        self.WVALID = Input(Bool)
+        self.WREADY = Output(Bool)
         self.WDATA = Input(U.w(params.dataBits))
         self.WSTRB = Input(U.w(params.strbBits))
-        self.BVALID = Output(Bool())
-        self.BREADY = Input(Bool())
+        self.BVALID = Output(Bool)
+        self.BREADY = Input(Bool)
         self.BRESP = Output(U.w(params.respBits))
-        self.ARVALID = Input(Bool())
-        self.ARREADY = Output(Bool())
+        self.ARVALID = Input(Bool)
+        self.ARREADY = Output(Bool)
         self.ARADDR = Input(U.w(params.addrBits))
-        self.RVALID = Output(Bool())
-        self.RREADY = Input(Bool())
+        self.RVALID = Output(Bool)
+        self.RREADY = Input(Bool)
         self.RDATA = Output(U.w(params.dataBits))
         self.RRESP = Output(U.w(params.respBits))
 
 class XilinxAXIMaster(AXIBase):
     def __init__(self):
         params = AXIParams()
-        self.AWVALID = Output(Bool())
-        self.AWREADY = Input(Bool())
+        self.AWVALID = Output(Bool)
+        self.AWREADY = Input(Bool)
         self.AWADDR = Output(U.w(params.addrBits))
         self.AWID = Output(U.w(params.idBits))
         self.AWUSER = Output(U.w(params.userBits))
@@ -272,20 +277,20 @@ class XilinxAXIMaster(AXIBase):
         self.AWPROT = Output(U.w(params.protBits))
         self.AWQOS = Output(U.w(params.qosBits))
         self.AWREGION = Output(U.w(params.regionBits))
-        self.WVALID = Output(Bool())
-        self.WREADY = Input(Bool())
+        self.WVALID = Output(Bool)
+        self.WREADY = Input(Bool)
         self.WDATA = Output(U.w(params.dataBits))
         self.WSTRB = Output(U.w(params.strbBits))
-        self.WLAST = Output(Bool())
+        self.WLAST = Output(Bool)
         self.WID = Output(U.w(params.idBits))
         self.WUSER = Output(U.w(params.userBits))
-        self.BVALID = Input(Bool())
-        self.BREADY = Output(Bool())
+        self.BVALID = Input(Bool)
+        self.BREADY = Output(Bool)
         self.BRESP = Input(U.w(params.respBits))
         self.BID = Input(U.w(params.idBits))
         self.BUSER = Input(U.w(params.userBits))
-        self.ARVALID = Output(Bool())
-        self.ARREADY = Input(Bool())
+        self.ARVALID = Output(Bool)
+        self.ARREADY = Input(Bool)
         self.ARADDR = Output(U.w(params.addrBits))
         self.ARID = Output(U.w(params.idBits))
         self.ARUSER = Output(U.w(params.userBits))
@@ -297,11 +302,11 @@ class XilinxAXIMaster(AXIBase):
         self.ARPROT = Output(U.w(params.protBits))
         self.ARQOS = Output(U.w(params.qosBits))
         self.ARREGION = Output(U.w(params.regionBits))
-        self.RVALID = Input(Bool())
-        self.RREADY = Output(Bool())
+        self.RVALID = Input(Bool)
+        self.RREADY = Output(Bool)
         self.RDATA = Input(U.w(params.dataBits))
         self.RRESP = Input(U.w(params.respBits))
-        self.RLAST = Input(Bool())
+        self.RLAST = Input(Bool)
         self.RID = Input(U.w(params.idBits))
         self.RUSER = Input(U.w(params.userBits))
 

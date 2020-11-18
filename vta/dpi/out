@@ -1,0 +1,459 @@
+k: clock
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: reset
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: dpi
+<class '__main__.VTAHostDPIMaster'>
+v is Bundle_Helper
+k: req
+<class '__main__.Req'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: opcode
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: addr
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: value
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: deq
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+clock Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.Clock'>))
+reset Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+<=====
+k: resp
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+clock Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.Clock'>))
+reset Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+<=====
+=====>
+clock Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.Clock'>))
+reset Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+<=====
+=====>
+clock Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.Clock'>))
+reset Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+<=====
+k: dpi
+<class '__main__.VTAHostDPIClient'>
+v is Bundle_Helper
+k: req
+<class '__main__.Req'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: opcode
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: addr
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: value
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: deq
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+<=====
+k: resp
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+<=====
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+<=====
+k: axi
+<class 'interface_axi.axi.AXILiteMaster'>
+v is Bundle_Helper
+k: aw
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: addr
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+<=====
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+<=====
+k: w
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: data
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: strb
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+<=====
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+<=====
+k: b
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: resp
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+axi_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+<=====
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+axi_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+<=====
+k: ar
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: addr
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+axi_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+axi_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+<=====
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+axi_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+axi_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+<=====
+k: r
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: data
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: resp
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+axi_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+axi_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_r_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_r_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_r_bits_data Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_r_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+<=====
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+axi_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+axi_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_r_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_r_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_r_bits_data Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_r_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+<=====
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+axi_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+axi_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_r_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_r_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_r_bits_data Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_r_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+<=====
+=====>
+dpi_req_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_opcode Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_req_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+dpi_req_value Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+dpi_req_deq Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+dpi_resp_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+axi_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+axi_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+axi_r_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_r_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+axi_r_bits_data Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+axi_r_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+<=====

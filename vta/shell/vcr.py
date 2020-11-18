@@ -5,7 +5,7 @@
 from pyhcl import* 
 import sys 
 sys.path.append("..") 
-from parameters import *
+from shell.parameters import *
 from interface_axi.axi import *
 from util.generic_parameterized_bundle import *
 from util.ext_funcs import *
@@ -23,32 +23,34 @@ from util.ext_funcs import *
     def __init__(self, p):
         super().__init__(p) """
         
-class VCRBase(BaseType):
+class VCRBase(Bundle_Helper):
     pass
         
-class VCRMaster(VCRBase):
+class VCRMaster(Bundle_Helper):
     def __init__(self): #p ShellParams or ShellKey
         p = ShellKey()
         vp = p.vcrParams
         mp = p.memParams
-        launch = Output(Bool)
-        finish = Input(Bool)
-        ecnt = Vec(vp.nECnt, flipped(valid(U.w(vp.regBits)))) 
-        vals = Output(Vec(vp.nVals, U.w(vp.regBits)))
-        ptrs = Output(Vec(vp.nPtrs, U.w(mp.addrBits)))
-        ucnt = Vec(vp.nUCnt, flipped(valid(U.w(vp.regBits))))
+        self.launch = Output(Bool)
+        self.finish = Input(Bool)
+        #self.ecnt = Vec(vp.nECnt, flipped(valid(U.w(vp.regBits)))) 
+        self.ecnt = flipped(valid(U.w(vp.regBits)))
+        self.vals = Output(Vec(vp.nVals, U.w(vp.regBits)))
+        self.ptrs = Output(Vec(vp.nPtrs, U.w(mp.addrBits)))
+        #self.ucnt = Vec(vp.nUCnt, flipped(valid(U.w(vp.regBits)))) 
+        self.ucnt = flipped(valid(U.w(vp.regBits)))
 
-class VCRClient(VCRBase):
+class VCRClient(Bundle_Helper):
     def __init__(self): #p ShellParams or ShellKey
         p = ShellKey()
         vp = p.vcrParams
         mp = p.memParams
-        launch = Input(Bool)
-        finish = Output(Bool)
-        ecnt = Vec(vp.nECnt, valid(UInt(vp.regBits.W)))
-        vals = Input(Vec(vp.nVals, U.w(vp.regBits)))
-        ptrs = Input(Vec(vp.nPtrs, U.w(mp.addrBits)))
-        ucnt = Vec(vp.nUCnt, valid(UInt(vp.regBits.W)))
+        self.launch = Input(Bool)
+        self.finish = Output(Bool)
+        self.ecnt = valid(UInt(vp.regBits.W))
+        self.vals = Input(Vec(vp.nVals, U.w(vp.regBits)))
+        self.ptrs = Input(Vec(vp.nPtrs, U.w(mp.addrBits)))
+        self.ucnt = valid(UInt(vp.regBits.W))
 
 class VCR_IO(Bundle_Helper):
     def __init__(self):
@@ -58,10 +60,7 @@ class VCR_IO(Bundle_Helper):
 
 class VCR(Module):
     io = mapper(VCR_IO())
-    print(type(io))
-
-    """ for k in io:
-        print(k)  """
+    print(io.vcr)
 
     p = ShellKey()
 
@@ -71,119 +70,105 @@ class VCR(Module):
 
     # Write control (AW, W, B)
     waddr = RegInit(U.w(hp.addrBits)(0xffff)) # init with invalid address
-    #wdata = io.host_w_bits_data
-    #sWriteAddress :: sWriteData :: sWriteResponse :: Nil = Enum(3)
-    #wstate = RegInit(sWriteAddress)
+    wdata = io.host_w_bits_data
+    sWriteAddress, sWriteData, sWriteResponse = [U(i) for i in range(3)]
+    wstate = RegInit(sWriteAddress)
 
     # read control (AR, R)
-    #val sReadAddress :: sReadData :: Nil = Enum(2)
-    #state = RegInit(sReadAddress)
-    #val rdata = RegInit(0.U(vp.regBits.W))
+    """ sReadAddress, sReadData = [U(i) for i in range(2)]
+    rstate = RegInit(sReadAddress)
+    rdata = RegInit(U.w(vp.regBits)(0))
 
-    '''// registers
-    val nPtrs = if (mp.addrBits == 32) vp.nPtrs else 2 * vp.nPtrs
-    val nTotal = vp.nCtrl + vp.nECnt + vp.nVals + nPtrs + vp.nUCnt
+    #egisters
+    nPtrs = 0
+    if mp.addrBits == 32:
+        nPtrs = vp.nPtrs
+    else:
+        nPtrs = 2 * vp.nPtrs
+    nTotal = vp.nCtrl + vp.nECnt + vp.nVals + nPtrs + vp.nUCnt #1 + 1 + 1 + 6 + 1
 
-    val reg = Seq.fill(nTotal)(RegInit(0.U(vp.regBits.W)))
-    val addr = Seq.tabulate(nTotal)(_ * 4)
-    val reg_map = (addr zip reg) map { case (a, r) => a.U -> r }
-    val eo = vp.nCtrl
-    val vo = eo + vp.nECnt
-    val po = vo + vp.nVals
-    val uo = po + nPtrs
+    #reg = Seq.fill(nTotal)(RegInit(U.w(vp.regBits)(0)))s
+    tmp = U(1)
+    #print(type(tmp))
+    reg = [RegInit(U.w(32)(0)) for i in range(nTotal)] #should be RegInit(U.w(vp.regBits)(0))
+    #val addr = Seq.tabulate(nTotal)(_ * 4)
+    addr = [4 * i for i in range(nTotal)]
+    #reg_map = zip(addr, reg) #map { case (a, r) => a.U -> r }
+    eo = vp.nCtrl
+    vo = eo + vp.nECnt
+    po = vo + vp.nVals
+    uo = po + nPtrs 
 
-    switch(wstate) {
-        is(sWriteAddress) {
-        when(io.host.aw.valid) {
-            wstate := sWriteData
-        }
-        }
-        is(sWriteData) {
-        when(io.host.w.valid) {
-            wstate := sWriteResponse
-        }
-        }
-        is(sWriteResponse) {
-        when(io.host.b.ready) {
-            wstate := sWriteAddress
-        }
-        }
-    }
 
-    when(io.host.aw.fire()) { waddr := io.host.aw.bits.addr }
+    #print(type(io.host_aw_valid))
+    with when(wstate == sWriteAddress):
+        with when(io.host_aw_valid): #valid是Output(Bool)类型，应该怎么判断？
+            wstate <<= sWriteData #fetch.py用的是<<= ， =报错 ？
+    with elsewhen(wstate == sWriteData):
+        with when(io.host_w_valid):
+            wstate <<= sWriteResponse
+    with elsewhen(wstate == sWriteResponse):
+        with when(io.host_b_ready):
+            wstate <<= sWriteAddress 
 
-    io.host.aw.ready := wstate === sWriteAddress
-    io.host.w.ready := wstate === sWriteData
-    io.host.b.valid := wstate === sWriteResponse
-    io.host.b.bits.resp := 0.U
+    #when(io.host.aw.fire()) { waddr := io.host.aw.bits.addr } #怎么写
+    with when(io.host_aw_valid): 
+        waddr <<= io.host_aw_bits_addr 
 
-    switch(rstate) {
-        is(sReadAddress) {
-        when(io.host.ar.valid) {
-            rstate := sReadData
-        }
-        }
-        is(sReadData) {
-        when(io.host.r.ready) {
-            rstate := sReadAddress
-        }
-        }
-    }
+    io.host_aw_ready <<= (wstate == sWriteAddress)
+    io.host_w_ready <<= (wstate == sWriteData)
+    io.host_b_valid <<= (wstate == sWriteResponse)
+    io.host_b_bits_resp <<= U(0)
 
-    io.host.ar.ready := rstate === sReadAddress
-    io.host.r.valid := rstate === sReadData
-    io.host.r.bits.data := rdata
-    io.host.r.bits.resp := 0.U
+    with when(rstate == sReadAddress):
+        with when(io.host_ar_valid):
+            rstate <<= sReadData
+    with when(rstate == sReadData):
+        with when(io.host_r_ready):
+            rstate <<= sReadAddress
 
-    when(io.vcr.finish) {
-        reg(0) := "b_10".U
-    }.elsewhen(io.host.w.fire() && addr(0).U === waddr) {
-        reg(0) := wdata
-    }
+    io.host_ar_ready <<= (rstate == sReadAddress)
+    io.host_r_valid <<= (rstate == sReadData)
+    io.host_r_bits_data <<= rdata
+    io.host_r_bits_resp <<= U(0)
 
-    for (i <- 0 until vp.nECnt) {
-        when(io.vcr.ecnt(i).valid) {
-        reg(eo + i) := io.vcr.ecnt(i).bits
-        }.elsewhen(io.host.w.fire() && addr(eo + i).U === waddr) {
-        reg(eo + i) := wdata
-        }
-    }
 
-    for (i <- 0 until (vp.nVals + nPtrs)) {
-        when(io.host.w.fire() && addr(vo + i).U === waddr) {
-        reg(vo + i) := wdata
-        }
-    }
+    with when(io.vcr_finish):
+        reg[0] <<= U(1) #U("b_10")
+    with elsewhen(io.host_w_valid & U(addr[0]) == waddr): # w.fire()
+        reg[0] <<= wdata
 
-    when(io.host.ar.fire()) {
-        rdata := MuxLookup(io.host.ar.bits.addr, 0.U, reg_map)
-    }
+    for i in range(vp.nECnt):
+        with when(io.vcr_ecnt_valid):
+            reg[eo + i] <<= io.vcr_ecnt_bits
+        with elsewhen(io.host_w_valid & U(addr[eo + i]) == waddr): # w.fire()
+            reg[eo + i] <<= wdata
 
-    io.vcr.launch := reg(0)(0)
+    for i in range(vp.nVals + nPtrs):
+        with when(io.host_w_valid & U(addr[vo + i]) == waddr): # w.fire()
+            reg[vo + i] <<= wdata
 
-    for (i <- 0 until vp.nVals) {
-        io.vcr.vals(i) := reg(vo + i)
-    }
+    #with when(io.host_ar.valid):
+    #    rdata <<= MuxLookup(io.host_ar_bits_addr, U(0), reg_map)
 
-    if (mp.addrBits == 32) { // 32-bit pointers
-        for (i <- 0 until nPtrs) {
-        io.vcr.ptrs(i) := reg(po + i)
-        }
-    } else { // 64-bits pointers
-        for (i <- 0 until (nPtrs / 2)) {
-        io.vcr.ptrs(i) := Cat(reg(po + 2 * i + 1), reg(po + 2 * i))
-        }
-    }
+    io.vcr_launch <<= reg[0][0]
 
-    for (i <- 0 until vp.nUCnt) {
-        when(io.vcr.ucnt(i).valid) {
-        reg(uo + i) := io.vcr.ucnt(i).bits
-        }.elsewhen(io.host.w.fire() && addr(uo + i).U === waddr) {
-        reg(uo + i) := wdata
-        }
-    }
-    }
-    '''
+    for i in range(vp.nVals):
+        io.vcr_vals[i] <<= reg[vo + i]
+    
+    if mp.addrBits == 32:
+        for i in range(nPtrs):
+            io.vcr_ptrs[i] <<= reg[po + i]
+    else:
+        for i in range(nPtrs / 2):
+            #io_vcr.ptrs[i] <<= Cat(reg[po + 2 * i + 1], reg[po + 2 * i])
+            pass
+
+    with when(io.vcr_ucnt_valid):
+        reg[uo] <<= io.vcr_ucnt_bits
+    with elsewhen(io.host_w_valid & U(addr[uo]) == waddr):
+        reg[uo] <<= wdata """
+    
 
 if __name__ == "__main__":
     Emitter.dumpVerilog(Emitter.dump(Emitter.emit(VCR()), "VCR.fir"))

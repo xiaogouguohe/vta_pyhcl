@@ -10,13 +10,17 @@
     loading 1D and 2D tensors to scratchpads, so it can be used by
     other modules such as Compute.
 """
-from vta.core.decode import LoadDecode
-from vta.core.isa import *
-from vta.core.semaphore import semaphore
-from vta.core.tensorutil import TensorClient
-from vta.shell.vme import *
-from vta.util.selfqueue import queue
-from vta.core.tensorload import tensorload
+
+import sys
+sys.path.append("..")
+
+from core.decode import LoadDecode
+from core.isa import *
+from core.semaphore import semaphore
+from core.tensorutil import TensorClient
+from shell.vme import *
+from util.selfqueue import queue
+from core.tensorload import tensorload
 
 
 def load(debug: bool = False):

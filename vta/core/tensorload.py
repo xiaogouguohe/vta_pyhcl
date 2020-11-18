@@ -2,9 +2,11 @@
 # Author: SunnyChen
 # Date:   2020-06-08
 
+import sys
+sys.path.append("..")
 
-from vta.core.tensorutil import *
-from vta.shell.vme import VMEReadMaster
+from core.tensorutil import *
+from shell.vme import VMEReadMaster
 
 """
     TensorLoad.
@@ -32,11 +34,12 @@ def tensorload(tensorType: str = "none", debug: bool = False):
 
     class TensorLoad(Module):
         io = mapper(TensorLoad_IO())
+        print(io.tensor_wr_bits_data)
 
-        sizeFactor = tp.tensorLength * tp.numMemBlock
+        """ sizeFactor = tp.tensorLength * tp.numMemBlock
         strideFactor = tp.tensorLength * tp.tensorWidth
 
-        dec = MemDecode_Div(io.inst)
+        dec = MemDecode_Div(io.inst) #需要根据io.host生成inst类型
         dataCtrl = tensordatactrl(tensorType, sizeFactor, strideFactor)
         dataCtrlDone = RegInit(Bool(False))
         yPadCtrl0 = tensorpadctrl("YPad0", sizeFactor)
@@ -193,9 +196,9 @@ def tensorload(tensorType: str = "none", debug: bool = False):
                  for _ in range(tp.tensorLength)]
         no_mask = Wire(Vec(tp.numMemBlock, Bool))
         for i in range(tp.numMemBlock):
-            no_mask[i] <<= Bool(True)
+            no_mask[i] <<= Bool(True) """
 
-        for i in range(tp.tensorLength):
+        """ for i in range(tp.tensorLength):
             for j in range(tp.numMemBlock):
                 wmask[i][j] <<= tag == U(j)
                 wdata[i][j] <<= Mux(isZeroPad, U(0), io.vme_rd_data_bits)
@@ -204,6 +207,8 @@ def tensorload(tensorType: str = "none", debug: bool = False):
             # sizeof(data(i)) === sizeof(wdata(i))
             tdata = Wire(Vec(tp.numMemBlock, U.w(tp.memBlockBits)))
             tempcat = Wire(U.w(tp.numMemBlock * tp.memBlockBits))
+            #print("type(io.tensor_wr_bits_data):", type(io.tensor))
+            print("io.tensor_wr_bits_data:", type(io.tensor_wr_bits_data))
             tempcat <<= CatBits(*(io.tensor_wr_bits_data[i]))
             for k in range(tp.numMemBlock):
                 tdata[k] <<= tempcat[(k+1)*tp.memBlockBits-1:k*tp.memBlockBits]
@@ -256,7 +261,7 @@ def tensorload(tensorType: str = "none", debug: bool = False):
                      (dec.ypad_1 == U(0))
         done_y_pad = (state == sYPad1) & dataCtrlDone & yPadCtrl1.io.done
         io.done <<= done_no_pad | done_x_pad | done_y_pad
-
+        """
     return TensorLoad()
 
 

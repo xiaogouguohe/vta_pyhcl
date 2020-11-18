@@ -1,0 +1,1276 @@
+k: mem
+<class 'interface_axi.axi.AXIMaster'>
+v is Bundle_Helper
+k: aw
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: addr
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: id
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: user
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: len
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: size
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: burst
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: lock
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: cache
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: prot
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: qos
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: region
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+<=====
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+<=====
+k: w
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: data
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: strb
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: last
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: id
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: user
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+<=====
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69fcc0>
+<=====
+k: b
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: resp
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: id
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: user
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69fcc0>
+mem_w <util.ext_funcs.Bundle_Helper object at 0x7f74fb696780>
+mem_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_b_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+<=====
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69fcc0>
+mem_w <util.ext_funcs.Bundle_Helper object at 0x7f74fb696780>
+mem_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_b_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6320>
+<=====
+k: ar
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: addr
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: id
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: user
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: len
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: size
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: burst
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: lock
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: cache
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: prot
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: qos
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: region
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69fcc0>
+mem_w <util.ext_funcs.Bundle_Helper object at 0x7f74fb696780>
+mem_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_b_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6320>
+mem_b <util.ext_funcs.Bundle_Helper object at 0x7f74fb69ff28>
+mem_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_ar_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_ar_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+<=====
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69fcc0>
+mem_w <util.ext_funcs.Bundle_Helper object at 0x7f74fb696780>
+mem_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_b_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6320>
+mem_b <util.ext_funcs.Bundle_Helper object at 0x7f74fb69ff28>
+mem_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_ar_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_ar_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6f98>
+<=====
+k: r
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: data
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: resp
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: last
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: id
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: user
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69fcc0>
+mem_w <util.ext_funcs.Bundle_Helper object at 0x7f74fb696780>
+mem_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_b_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6320>
+mem_b <util.ext_funcs.Bundle_Helper object at 0x7f74fb69ff28>
+mem_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_ar_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_ar_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6f98>
+mem_ar <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6da0>
+mem_r_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_data Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_r_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_r_bits_last Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+<=====
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69fcc0>
+mem_w <util.ext_funcs.Bundle_Helper object at 0x7f74fb696780>
+mem_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_b_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6320>
+mem_b <util.ext_funcs.Bundle_Helper object at 0x7f74fb69ff28>
+mem_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_ar_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_ar_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6f98>
+mem_ar <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6da0>
+mem_r_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_data Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_r_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_r_bits_last Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6ac940>
+<=====
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69fcc0>
+mem_w <util.ext_funcs.Bundle_Helper object at 0x7f74fb696780>
+mem_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_b_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6320>
+mem_b <util.ext_funcs.Bundle_Helper object at 0x7f74fb69ff28>
+mem_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_ar_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_ar_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6f98>
+mem_ar <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6da0>
+mem_r_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_data Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_r_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_r_bits_last Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6ac940>
+mem_r <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6438>
+<=====
+k: vme
+<class 'shell.vme.VMEReadClient'>
+v is Bundle_Helper
+k: cmd
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: addr
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: len
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69fcc0>
+mem_w <util.ext_funcs.Bundle_Helper object at 0x7f74fb696780>
+mem_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_b_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6320>
+mem_b <util.ext_funcs.Bundle_Helper object at 0x7f74fb69ff28>
+mem_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_ar_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_ar_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6f98>
+mem_ar <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6da0>
+mem_r_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_data Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_r_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_r_bits_last Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6ac940>
+mem_r <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6438>
+mem <interface_axi.axi.AXIMaster object at 0x7f74fb6966a0>
+vme_cmd_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_cmd_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_cmd_bits_addr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_cmd_bits_len Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+<=====
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69fcc0>
+mem_w <util.ext_funcs.Bundle_Helper object at 0x7f74fb696780>
+mem_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_b_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6320>
+mem_b <util.ext_funcs.Bundle_Helper object at 0x7f74fb69ff28>
+mem_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_ar_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_ar_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6f98>
+mem_ar <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6da0>
+mem_r_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_data Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_r_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_r_bits_last Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6ac940>
+mem_r <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6438>
+mem <interface_axi.axi.AXIMaster object at 0x7f74fb6966a0>
+vme_cmd_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_cmd_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_cmd_bits_addr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_cmd_bits_len Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6ace80>
+<=====
+k: data
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69fcc0>
+mem_w <util.ext_funcs.Bundle_Helper object at 0x7f74fb696780>
+mem_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_b_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6320>
+mem_b <util.ext_funcs.Bundle_Helper object at 0x7f74fb69ff28>
+mem_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_ar_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_ar_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6f98>
+mem_ar <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6da0>
+mem_r_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_data Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_r_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_r_bits_last Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6ac940>
+mem_r <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6438>
+mem <interface_axi.axi.AXIMaster object at 0x7f74fb6966a0>
+vme_cmd_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_cmd_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_cmd_bits_addr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_cmd_bits_len Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6ace80>
+vme_cmd <util.ext_funcs.Bundle_Helper object at 0x7f74fb6acc88>
+vme_data_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_data_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_data_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+<=====
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69fcc0>
+mem_w <util.ext_funcs.Bundle_Helper object at 0x7f74fb696780>
+mem_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_b_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6320>
+mem_b <util.ext_funcs.Bundle_Helper object at 0x7f74fb69ff28>
+mem_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_ar_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_ar_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6f98>
+mem_ar <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6da0>
+mem_r_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_data Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_r_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_r_bits_last Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6ac940>
+mem_r <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6438>
+mem <interface_axi.axi.AXIMaster object at 0x7f74fb6966a0>
+vme_cmd_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_cmd_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_cmd_bits_addr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_cmd_bits_len Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6ace80>
+vme_cmd <util.ext_funcs.Bundle_Helper object at 0x7f74fb6acc88>
+vme_data_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_data_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_data_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+vme_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb6acf60>
+<=====
+=====>
+mem_aw_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_aw_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_aw_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_aw_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_aw_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_aw_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_aw_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f358>
+mem_aw <util.ext_funcs.Bundle_Helper object at 0x7f74fb69f160>
+mem_w_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_data Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_w_bits_strb Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_w_bits_last Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_w_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb69fcc0>
+mem_w <util.ext_funcs.Bundle_Helper object at 0x7f74fb696780>
+mem_b_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_b_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_b_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6320>
+mem_b <util.ext_funcs.Bundle_Helper object at 0x7f74fb69ff28>
+mem_ar_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+mem_ar_bits_id Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_user Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_ar_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+mem_ar_bits_size Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_burst Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_lock Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_ar_bits_cache Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_prot Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U3'>))
+mem_ar_bits_qos Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits_region Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U4'>))
+mem_ar_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6f98>
+mem_ar <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6da0>
+mem_r_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_data Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+mem_r_bits_resp Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U2'>))
+mem_r_bits_last Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_id Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits_user Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+mem_r_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6ac940>
+mem_r <util.ext_funcs.Bundle_Helper object at 0x7f74fb6a6438>
+mem <interface_axi.axi.AXIMaster object at 0x7f74fb6966a0>
+vme_cmd_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_cmd_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_cmd_bits_addr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_cmd_bits_len Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb6ace80>
+vme_cmd <util.ext_funcs.Bundle_Helper object at 0x7f74fb6acc88>
+vme_data_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_data_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_data_bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+vme_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb6acf60>
+vme <shell.vme.VMEReadClient object at 0x7f74fb6966d8>
+<=====
+k: start
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: done
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: inst
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: baddr
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: vme_rd
+<class 'shell.vme.VMEReadMaster'>
+v is Bundle_Helper
+k: cmd
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: addr
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: len
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+start Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+done Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+inst Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U128'>))
+baddr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+<=====
+=====>
+start Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+done Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+inst Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U128'>))
+baddr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_rd_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb426898>
+<=====
+k: data
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: ready
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+start Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+done Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+inst Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U128'>))
+baddr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_rd_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb426898>
+vme_rd_cmd <util.ext_funcs.Bundle_Helper object at 0x7f74fb426630>
+vme_rd_data_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+<=====
+=====>
+start Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+done Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+inst Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U128'>))
+baddr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_rd_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb426898>
+vme_rd_cmd <util.ext_funcs.Bundle_Helper object at 0x7f74fb426630>
+vme_rd_data_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+vme_rd_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb426518>
+<=====
+k: tensor
+<class 'core.tensorutil.TensorClient'>
+v is Bundle_Helper
+k: p
+<class 'shell.parameters.CoreKey'>
+v is else
+k: sp
+<class 'shell.parameters.ShellKey'>
+v is else
+k: tensorLength
+<class 'int'>
+v is else
+k: tensorWidth
+<class 'int'>
+v is else
+k: tensorElemBits
+<class 'int'>
+v is else
+k: memDepth
+<class 'int'>
+v is else
+k: memBlockBits
+<class 'int'>
+v is else
+k: numMemBlock
+<class 'int'>
+v is else
+k: memAddrBits
+<class 'int'>
+v is else
+k: rd
+<class 'core.tensorutil.TensorClient.__init__.<locals>.RD'>
+v is Bundle_Helper
+k: idx
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+start Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+done Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+inst Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U128'>))
+baddr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_rd_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb426898>
+vme_rd_cmd <util.ext_funcs.Bundle_Helper object at 0x7f74fb426630>
+vme_rd_data_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+vme_rd_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb426518>
+vme_rd <shell.vme.VMEReadMaster object at 0x7f74fb4264e0>
+tensor_rd_idx_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_rd_idx_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U9'>))
+<=====
+k: data
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+start Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+done Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+inst Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U128'>))
+baddr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_rd_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb426898>
+vme_rd_cmd <util.ext_funcs.Bundle_Helper object at 0x7f74fb426630>
+vme_rd_data_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+vme_rd_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb426518>
+vme_rd <shell.vme.VMEReadMaster object at 0x7f74fb4264e0>
+tensor_rd_idx_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_rd_idx_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U9'>))
+tensor_rd_idx <util.ext_funcs.Bundle_Helper object at 0x7f74fb426da0>
+tensor_rd_data_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_rd_data_bits Pub(Output(typ=Vec(size=1, typ=Vec(size=16, typ=<class 'pyhcl.dsl.cdatatype.U8'>, lvl=1), lvl=2)))
+<=====
+=====>
+start Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+done Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+inst Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U128'>))
+baddr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_rd_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb426898>
+vme_rd_cmd <util.ext_funcs.Bundle_Helper object at 0x7f74fb426630>
+vme_rd_data_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+vme_rd_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb426518>
+vme_rd <shell.vme.VMEReadMaster object at 0x7f74fb4264e0>
+tensor_rd_idx_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_rd_idx_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U9'>))
+tensor_rd_idx <util.ext_funcs.Bundle_Helper object at 0x7f74fb426da0>
+tensor_rd_data_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_rd_data_bits Pub(Output(typ=Vec(size=1, typ=Vec(size=16, typ=<class 'pyhcl.dsl.cdatatype.U8'>, lvl=1), lvl=2)))
+tensor_rd_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb42e080>
+<=====
+k: wr
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: valid
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: bits
+<class 'util.ext_funcs.Bundle_Helper'>
+v is Bundle_Helper
+k: idx
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+k: data
+<class 'pyhcl.core._meta_pub.Pub'>
+v is Pub
+=====>
+start Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+done Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+inst Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U128'>))
+baddr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_rd_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb426898>
+vme_rd_cmd <util.ext_funcs.Bundle_Helper object at 0x7f74fb426630>
+vme_rd_data_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+vme_rd_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb426518>
+vme_rd <shell.vme.VMEReadMaster object at 0x7f74fb4264e0>
+tensor_rd_idx_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_rd_idx_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U9'>))
+tensor_rd_idx <util.ext_funcs.Bundle_Helper object at 0x7f74fb426da0>
+tensor_rd_data_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_rd_data_bits Pub(Output(typ=Vec(size=1, typ=Vec(size=16, typ=<class 'pyhcl.dsl.cdatatype.U8'>, lvl=1), lvl=2)))
+tensor_rd_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb42e080>
+tensor_rd <core.tensorutil.TensorClient.__init__.<locals>.RD object at 0x7f74fb426cc0>
+tensor_wr_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_wr_bits_idx Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U9'>))
+tensor_wr_bits_data Pub(Output(typ=Vec(size=1, typ=Vec(size=16, typ=<class 'pyhcl.dsl.cdatatype.U8'>, lvl=1), lvl=2)))
+<=====
+=====>
+start Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+done Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+inst Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U128'>))
+baddr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_rd_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb426898>
+vme_rd_cmd <util.ext_funcs.Bundle_Helper object at 0x7f74fb426630>
+vme_rd_data_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+vme_rd_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb426518>
+vme_rd <shell.vme.VMEReadMaster object at 0x7f74fb4264e0>
+tensor_rd_idx_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_rd_idx_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U9'>))
+tensor_rd_idx <util.ext_funcs.Bundle_Helper object at 0x7f74fb426da0>
+tensor_rd_data_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_rd_data_bits Pub(Output(typ=Vec(size=1, typ=Vec(size=16, typ=<class 'pyhcl.dsl.cdatatype.U8'>, lvl=1), lvl=2)))
+tensor_rd_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb42e080>
+tensor_rd <core.tensorutil.TensorClient.__init__.<locals>.RD object at 0x7f74fb426cc0>
+tensor_wr_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_wr_bits_idx Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U9'>))
+tensor_wr_bits_data Pub(Output(typ=Vec(size=1, typ=Vec(size=16, typ=<class 'pyhcl.dsl.cdatatype.U8'>, lvl=1), lvl=2)))
+tensor_wr_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb42e550>
+<=====
+=====>
+start Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+done Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+inst Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U128'>))
+baddr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_rd_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb426898>
+vme_rd_cmd <util.ext_funcs.Bundle_Helper object at 0x7f74fb426630>
+vme_rd_data_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+vme_rd_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb426518>
+vme_rd <shell.vme.VMEReadMaster object at 0x7f74fb4264e0>
+tensor_rd_idx_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_rd_idx_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U9'>))
+tensor_rd_idx <util.ext_funcs.Bundle_Helper object at 0x7f74fb426da0>
+tensor_rd_data_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_rd_data_bits Pub(Output(typ=Vec(size=1, typ=Vec(size=16, typ=<class 'pyhcl.dsl.cdatatype.U8'>, lvl=1), lvl=2)))
+tensor_rd_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb42e080>
+tensor_rd <core.tensorutil.TensorClient.__init__.<locals>.RD object at 0x7f74fb426cc0>
+tensor_wr_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_wr_bits_idx Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U9'>))
+tensor_wr_bits_data Pub(Output(typ=Vec(size=1, typ=Vec(size=16, typ=<class 'pyhcl.dsl.cdatatype.U8'>, lvl=1), lvl=2)))
+tensor_wr_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb42e550>
+tensor_wr <util.ext_funcs.Bundle_Helper object at 0x7f74fb42e400>
+<=====
+=====>
+start Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+done Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+inst Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U128'>))
+baddr Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_ready Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_cmd_bits_addr Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
+vme_rd_cmd_bits_len Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U8'>))
+vme_rd_cmd_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb426898>
+vme_rd_cmd <util.ext_funcs.Bundle_Helper object at 0x7f74fb426630>
+vme_rd_data_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_ready Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+vme_rd_data_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U64'>))
+vme_rd_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb426518>
+vme_rd <shell.vme.VMEReadMaster object at 0x7f74fb4264e0>
+tensor_rd_idx_valid Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_rd_idx_bits Pub(Input(typ=<class 'pyhcl.dsl.cdatatype.U9'>))
+tensor_rd_idx <util.ext_funcs.Bundle_Helper object at 0x7f74fb426da0>
+tensor_rd_data_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_rd_data_bits Pub(Output(typ=Vec(size=1, typ=Vec(size=16, typ=<class 'pyhcl.dsl.cdatatype.U8'>, lvl=1), lvl=2)))
+tensor_rd_data <util.ext_funcs.Bundle_Helper object at 0x7f74fb42e080>
+tensor_rd <core.tensorutil.TensorClient.__init__.<locals>.RD object at 0x7f74fb426cc0>
+tensor_wr_valid Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U1'>))
+tensor_wr_bits_idx Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U9'>))
+tensor_wr_bits_data Pub(Output(typ=Vec(size=1, typ=Vec(size=16, typ=<class 'pyhcl.dsl.cdatatype.U8'>, lvl=1), lvl=2)))
+tensor_wr_bits <util.ext_funcs.Bundle_Helper object at 0x7f74fb42e550>
+tensor_wr <util.ext_funcs.Bundle_Helper object at 0x7f74fb42e400>
+tensor <core.tensorutil.TensorClient object at 0x7f74fb426be0>
+<=====
+SubField(value=Output(typ=Vec(size=1, typ=Vec(size=16, typ=<class 'pyhcl.dsl.cdatatype.U8'>, lvl=1), lvl=2)), name=tensor_wr_bits_data, ref=object of <class 'pyhcl.dsl.cio.IO'>)

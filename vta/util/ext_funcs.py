@@ -39,17 +39,24 @@ def mapper_helper(bundle, dic=None, prefix=""):
             print("v is Bundle_Helper")
             if prefix == "":
                 mapper_helper(v, tdic, k)
+                tdic[k] = v
             else:
                 mapper_helper(v, tdic, prefix+"_"+k)
-        elif isinstance(v, List):
+                tdic[prefix+"_"+k] = v
+        elif isinstance(v, List): #List
             print("v is List")
             for i in range(len(v)):
+                print("i:", i)
+                #print("v[i]", v[i])
+                print("type of v[i]", type(v[i]))
                 if isinstance(v[i], Pub):
+                    print("v[i] is Pub")
                     if prefix == "":
                         tdic[k+"_"+str(i)] = v[i]
                     else:
                         tdic[prefix+"_"+k+"_"+str(i)] = v[i]
                 elif isinstance(v[i], Bundle_Helper):
+                    print("v[i] is Bundle_Helper")
                     if prefix == "":
                         mapper_helper(v[i], tdic, k+"_"+str(i))
                     else:
@@ -78,7 +85,7 @@ def decoupled(basetype):
 
     if isinstance(basetype, CType) or isinstance(basetype, type):
         coupled.bits = Output(basetype)
-    elif isinstance(basetype, BaseType):
+    elif isinstance(basetype, Bundle_Helper):
         coupled.bits = Bundle_Helper()
         dic = basetype.__dict__
         for keys in dic:
@@ -96,10 +103,17 @@ def valid(basetype):
         coupled.bits = Output(basetype)
     elif isinstance(basetype, Vec):
         coupled.bits = Output(basetype)
-    elif isinstance(basetype, BaseType):
+    elif isinstance(basetype, List):
+        #print("basetype:", basetype)
+        #print("type(basetype)", type(basetype))
+        #print("len(basetype):", len(basetype))
+        #coupled.bits = [Output(basetype[i]) for i in range(len(basetype))]
+        coupled.bits = Output(basetype)
+    elif isinstance(basetype, Bundle_Helper):
         coupled.bits = Bundle_Helper()
         dic = basetype.__dict__
         for keys in dic:
+            #coupled.bits.__dict__[keys] = valid(keys)
             if isinstance(dic[keys], CType) or isinstance(dic[keys], type):
                 coupled.bits.__dict__[keys] = Output(dic[keys])
 
@@ -117,6 +131,7 @@ def flipped(bundle):
             dic[keys] = base_flipped(dic[keys])
         elif isinstance(dic[keys], Bundle_Helper):
             flipped(dic[keys])
+        
 
     return bundle
 

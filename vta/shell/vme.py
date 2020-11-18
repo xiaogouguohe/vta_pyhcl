@@ -8,44 +8,70 @@ sys.path.append("..")
 from pyhcl import *
 from shell.parameters import *
 from util.ext_funcs import *
+from interface_axi.axi import *
 
 
 # VMECmd
 # This interface is used for creating write and read requests to memory.
-class VMECmd(BaseType):
+class VMECmd(Bundle_Helper):
     def __init__(self):
         addrBits = ShellKey().memParams.addrBits
         lenBits = ShellKey().memParams.lenBits
         self.addr = U.w(addrBits)
         self.len = U.w(lenBits)
 
-
-# VMEReadMaster
-# This interface is used by modules inside the core to generate read requests
-# and receive responses from VME.
-# def VMEReadMaster():
-#     p = ShellKey()
-#     dataBits = p.memParams.dataBits
-#
-#     class Cmd(BaseType):
-#         def __init__(self):
-#             self.cmd = VMECmd()
-#
-#     class Data(BaseType):
-#         def __init__(self):
-#             self.data = U.w(dataBits)
-#
-#     vmreadmaster = IO()
-#     decoupled(vmreadmaster, Cmd())
-#     decoupled(vmreadmaster, Data(), is_fliped=True)
-#     return vmreadmaster
 class VMEReadMaster(Bundle_Helper):
     def __init__(self):
-        p = ShellKey()
-        dataBits = p.memParams.dataBits
+        super().__init__()
+        dataBits = ShellKey().memParams.dataBits
         self.cmd = decoupled(VMECmd())
         self.data = flipped(decoupled(U.w(dataBits)))
 
+class VMEReadClient(Bundle_Helper):
+    def __init__(self):
+        dataBits = ShellKey().memParams.dataBits
+        self.cmd = flipped(decoupled(VMECmd()))
+        self.data = decoupled(U.w(dataBits))
+
+class VMEWriteMaster(Bundle_Helper):
+    def __init__(self):
+        dataBits = ShellKey().memParams.dataBits
+        self.cmd = decoupled(VMECmd())
+        self.data = decoupled(U.w(dataBits))
+        self.ack = Input(Bool)
+
+class VMEWriteClient(Bundle_Helper):
+    def __init__(self):
+        dataBits = ShellKey().memParams.dataBits
+        self.cmd = flipped(decoupled(VMECmd()))
+        self.data = flipped(decoupled(U.w(dataBits)))
+        self.ack = Output(Bool)
+
+class VMEMaster(Bundle_Helper):
+    def __init__(self):
+        nRd = ShellKey().vmeParams.nReadClients
+        nWr = ShellKey.vmeParams.nWriteClients
+        self.rd = Vec(nRd, VMEReadMaster())
+        self.wr = Vec(nWr, VMEWriteMaster())
+
+class VMEClient(Bundle_Helper):
+    def __init__(self):
+        nRd = ShellKey().vmeParams.nReadClients
+        nWr = ShellKey().vmeParams.nWriteClients
+        self.rd = Vec(nRd, VMEReadClient())
+        self.wr = Vec(nWr, VMEWriteClient())
+
+class VME_IO(Bundle_Helper):
+    def __init__(self):
+        self.mem = AXIMaster()
+        self.vme = VMEReadClient()
+
+class VME(Module):
+    io = mapper(VME_IO())
+
+    nReadClients = ShellKey().vmeParams.nReadClients
+    #rd_arb = Module(Arbiter(VMECmd(), nReadClients))
+    #rd_arb_chosen = RegEnable(rd_arb.io.chosen, rd_arb.io.out.fire())
 
 if __name__ == '__main__':
-    pass
+    Emitter.dumpVerilog(Emitter.dump(Emitter.emit(VME()), "VME.fir"))

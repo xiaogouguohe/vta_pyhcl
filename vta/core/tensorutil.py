@@ -3,22 +3,16 @@ VTA pyhcl implementation of core/TensorUtil.scala
 Author: SunnyChen
 Date:   2020-06-02
 """
-from vta.core.decode import MemDecode_Div
-from vta.core.isa import *
-from vta.shell.parameters import *
-from vta.util.ext_funcs import *
+
+import sys
+sys.path.append("..") 
+
+from core.decode import *
+from core.isa import *
+from shell.parameters import *
+from util.ext_funcs import *
 from math import *
 from pyhcl import *
-
-
-"""
-TensorParams.
-
-This Bundle derives parameters for each tensorType, including inputs (inp),
-weights (wgt), biases (acc), and outputs (out). This is used to avoid
-doing the same boring calculations over and over again.
-"""
-
 
 class TensorParams(Bundle_Helper):
     def __init__(self, tensorType: str):
@@ -46,14 +40,26 @@ class TensorParams(Bundle_Helper):
 
         self.memAddrBits = int(ceil(log(self.memDepth, 2)))
 
-"""
-TensorClient.
+class TensorMaster(TensorParams):
+    def __init__(self, tensorType: str):
+        super().__init__(tensorType)
+        inner_memAddrBits = self.memAddrBits
+        inner_tensorLength, inner_tensorWidth, inner_tensorElemBits = self.tensorLength, self.tensorWidth, self.tensorElemBits
 
-This interface receives read and write tensor-requests to scratchpads. For example,
-The TensorLoad unit uses this interface for receiving read and write requests from
-the TensorGemm unit.
-"""
+        class RD(Bundle_Helper):
+            def __init__(self):
+                self.idx = valid(U.w(inner_memAddrBits))
+                self.data = flipped(valid(Vec(inner_tensorLength, Vec(inner_tensorWidth, U.w(inner_tensorElemBits)))))
+                #self.data = flipped(valid([[U.w(inner_tensorElemBits) for _ in range(inner_tensorWidth)] for _ in range(inner_tensorLength)]))
 
+        class WR(Bundle_Helper):
+            def __init__(self):
+                self.idx = U.w(inner_memAddrBits)
+                self.data = Vec(inner_tensorLength, Vec(inner_tensorWidth, U.w(inner_tensorElemBits)))
+                #self.data = [[U.w(inner_tensorElemBits) for _ in range(inner_tensorWidth)] for _ in range(inner_tensorLength)]
+
+        self.rd = RD()
+        self.wr = flipped(valid(WR()))
 
 class TensorClient(TensorParams):
     def __init__(self, tensorType: str):
@@ -65,15 +71,17 @@ class TensorClient(TensorParams):
             def __init__(self):
                 self.idx = flipped(valid(U.w(inner_memAddrBits)))
                 self.data = valid(Vec(inner_tensorLength, Vec(inner_tensorWidth, U.w(inner_tensorElemBits))))
+                #self.data = valid([[U.w(inner_tensorElemBits) for _ in range(inner_tensorWidth)] for _ in range(inner_tensorLength)])
 
-        class WR(BaseType):
+        class WR(Bundle_Helper):
             def __init__(self):
                 self.idx = U.w(inner_memAddrBits)
                 self.data = Vec(inner_tensorLength, Vec(inner_tensorWidth, U.w(inner_tensorElemBits)))
+                #self.data = [[U.w(inner_tensorElemBits) for _ in range(inner_tensorWidth)] for _ in range(inner_tensorLength)]
 
         self.rd = RD()
-        self.wr = flipped(valid(WR()))
-
+        #self.wr = flipped(valid(WR()))
+        self.wr = valid(WR())
 
 # TensorDataCtrl. Data controller for TensorLoad
 def tensordatactrl(tensorType: str = "none", sizeFactor: int = 1, strideFactor: int = 1):

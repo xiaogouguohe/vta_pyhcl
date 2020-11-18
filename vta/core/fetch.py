@@ -56,8 +56,8 @@ def fetch(debug: bool = False):
         inst_q = queue(U.w(INST_BITS), entries_q)
         dec = FetchDecode()
 
-        s1_launch = Reg(Bool)   # val s1_launch = RegNext(io.launch)
-        s1_launch <<= io.launch
+        """ s1_launch = Reg(Bool)   # val s1_launch = RegNext(io.launch)
+        s1_launch <<= io.launch #有问题
         pulse = io.launch & (~s1_launch)
 
         raddr = Reg(U.w(mp.addrBits))
@@ -67,14 +67,20 @@ def fetch(debug: bool = False):
         xrem = Reg(U.w(vp.regBits))
         xsize = (io.ins_count << U(1)) - U(1)
         xmax = U((1 << mp.lenBits))
-        xmax_bytes = U(int((1 << mp.lenBits) * mp.dataBits / 8))
+        xmax_bytes = U(int((1 << mp.lenBits) * mp.dataBits / 8)) 
 
         sIdle, sReadCmd, sReadLSB, sReadMSB, sDrain = [U(i) for i in range(5)]
-        state = RegInit(sIdle)
+        state = RegInit(sIdle) """
 
         # Control
         # TODO: Using if-elif-else to implement switch-is temporarily
-        with when(state == sIdle):
+        print(state)
+        print(sIdle)
+        print(sReadCmd)
+        print(sReadLSB)
+        print(sReadMSB)
+        print(sDrain)
+        """ with when(state == sIdle):
             with when(pulse):
                 state <<= sReadCmd
                 with when(xsize < xmax):
@@ -156,13 +162,12 @@ def fetch(debug: bool = False):
             ...: Bool(False)
         })
 
-        inst_q.io.deq_ready <<= deq_ready & inst_q.io.deq_valid & (state == sDrain)
+        inst_q.io.deq_ready <<= deq_ready & inst_q.io.deq_valid & (state == sDrain) """
 
     return Fetch()
 
 
 if __name__ == '__main__':
-    #Emitter.dumpVerilog(Emitter.dump(Emitter.emit(fetch()), "fetch.fir"))
-    #Emitter.dumpVerilog(Emitter.dump(Emitter.emit(fetch()), "fetch.fir"))
-    fetch()
+    Emitter.dumpVerilog(Emitter.dump(Emitter.emit(fetch()), "fetch.fir"))
+    #fetch()
     

@@ -6,23 +6,9 @@ import sys
 sys.path.append("..") 
 
 from core.isa import *
-from util.ext_funcs import BaseType
+from util.ext_funcs import Bundle_Helper
 
-"""
-    MemDecode
-    
-    Decode memory instructions with a Bundle. This is similar to an union,
-    therefore order matters when declaring fields. These are the instructions
-    decoded with this bundle:
-       - LUOP
-       - LWGT
-       - LINP
-       - LACC
-       - SOUT
-"""
-
-
-class MemDecode(BaseType):
+class MemDecode(Bundle_Helper):
     def __init__(self):
         self.xpad_1 = U.w(M_PAD_BITS)
         self.xpad_0 = U.w(M_PAD_BITS)
@@ -40,7 +26,6 @@ class MemDecode(BaseType):
         self.pop_next = Bool
         self.pop_prev = Bool
         self.op = U.w(OP_BITS)
-
 
 class MemDecode_Div:
     def __init__(self, inst):
@@ -61,22 +46,88 @@ class MemDecode_Div:
         self.pop_prev = inst[hpop_prev[1]]
         self.op = inst[hop[1]:hop[0]]
 
+class GemmDecode(Bundle_Helper):
+    def __init__(self):
+        self.wgt_1 = U.w(C_WIDX_BITS)
+        self.wgt_0 = U.w(C_WIDX_BITS)
+        self.inp_1 = U.w(C_IIDX_BITS)
+        self.inp_0 = U.w(C_IIDX_BITS)
+        self.acc_1 = U.w(C_AIDX_BITS)
+        self.acc_0 = U.w(C_AIDX_BITS)
+        self.empty_0 = Bool
+        self.lp_1 = U.w(C_ITER_BITS)
+        self.lp_0 = U.w(C_ITER_BITS)
+        self.uop_end = U.w(C_UOP_END_BITS)
+        self.uop_begin = U.w(C_UOP_BGN_BITS)
+        self.reset = Bool
+        self.push_next = Bool
+        self.push_prev = Bool
+        self.pop_next = Bool
+        self.pop_prev = Bool
+        self.op = U.w(OP_BITS)
 
-"""
-    FetchDecode
-    Partial decoding for dispatching instructions to Load, Compute, and Store.
-"""
+class AluDecode(Bundle_Helper):
+    def __init__(self):
+        self.empty_1 = Bool
+        self.alu_imm = U.w(C_ALU_IMM_BITS)
+        self.alu_use_imm = Bool
+        self.alu_op = U.w(C_ALU_DEC_BITS)
+        self.src_1 = U.w(C_IIDX_BITS)
+        self.src_0 = U.w(C_IIDX_BITS)
+        self.dst_1 = U.w(C_AIDX_BITS)
+        self.dst_0 = U.w(C_AIDX_BITS)
+        self.empty_0 = Bool
+        self.lp_1 = U.w(C_ITER_BITS)
+        self.lp_0 = U.w(C_ITER_BITS)
+        self.uop_end = U.w(C_UOP_END_BITS)
+        self.uop_begin = U.w(C_UOP_BGN_BITS)
+        self.reset = Bool
+        self.push_next = Bool
+        self.push_prev = Bool
+        self.pop_next = Bool
+        self.pop_prev = Bool
+        self.op = U.w(OP_BITS)
 
+class UopDecode(Bundle_Helper):
+    def __init__(self):
+        self.u2 = U.w(10)
+        self.u1 = U.w(11)
+        self.u0 = U.w(11)
 
 class FetchDecode(Module):
     io = IO(
-        inst=Input(U.w(INST_BITS)),
-        isLoad=Output(Bool),
-        isCompute=Output(Bool),
-        isStore=Output(Bool)
+        inst = Input(U.w(INST_BITS)),
+        isLoad = Output(Bool),
+        isCompute = Output(Bool),
+        isStore = Output(Bool)
     )
 
-    cs_op_type = LookUpTable(io.inst, {
+    if io.inst == LUOP:
+        csignals = [Y, OP_G]
+    elif io.host == LWGT:
+        csignals = [Y, OP_L]
+    elif io.host == LINP:
+        csignals = [Y, OP_L]
+    elif io.host == LACC:
+        csignals = [Y, OP_G]
+    elif io.host == SOUT:
+        csignals = [Y, OP_S]
+    elif io.host == GEMM:
+        csignals = [Y, OP_G]
+    elif io.host == FNSH:
+        csignals = [Y, OP_G]
+    elif io.host == VMIN:
+        csignals = [Y, OP_G]
+    elif io.host == VMAX:
+        csignals = [Y, OP_G]
+    elif io.host == VADD:
+        csignals = [Y, OP_G]
+    elif io.host == VSHX:
+        csignals = [Y, OP_G]
+    
+    cs_val_inst, cs_op_type = csignals
+
+    ''' cs_op_type = LookUpTable(io.inst, {
         LUOP: OP_G,
         LWGT: OP_L,
         LINP: OP_L,
@@ -104,33 +155,87 @@ class FetchDecode(Module):
         VADD: Y,
         VSHX: Y,
         ...: N
-    })
+    }) '''
 
-    io.isLoad <<= cs_val_inst & (cs_op_type == OP_L)
-    io.isCompute <<= cs_val_inst & (cs_op_type == OP_G)
-    io.isStore <<= cs_val_inst & (cs_op_type == OP_S)
-
-
-"""
-    LoadDecode
-    
-    Decode dependencies, type and sync for Load module
-"""
-
+    io.isLoad <<= (cs_val_inst & cs_op_type == OP_L)
+    io.isCompute <<= (cs_val_inst & cs_op_type == OP_G)
+    io.isStore <<= (cs_val_inst & cs_op_type == OP_S)
 
 class LoadDecode(Module):
     io = IO(
-        inst=Input(U.w(INST_BITS)),
-        push_next=Output(Bool),
-        pop_next=Output(Bool),
-        isInput=Output(Bool),
-        isWeight=Output(Bool),
-        isSync=Output(Bool)
+        inst = Input(U.w(INST_BITS)),
+        push_next = Output(Bool),
+        pop_next = Output(Bool),
+        isInput = Output(Bool),
+        isWeight = Output(Bool),
+        isSync = Output(Bool),
     )
+    ''' dec = io.inst.asTypeOf(MemDecode())
+    io.push_next <<= dec.push_next
+    io.pop_next <<= dec.pop_next
+    io.isInput <<= (io.inst == LINP & dec.xsize != U(0))
+    io.isWeight <<= (io.inst == LWGT & dec.xsize != U(0))
+    io.isSync <<= (io.inst == LINP | io.inst == LWGT) & dec.xsize == U(0) '''
+
     io.push_next <<= io.inst[hpush_next[1]:hpush_next[0]]
     io.pop_next <<= io.inst[hpop_next[1]:hpop_next[0]]
     io.isInput <<= (io.inst == LINP) & (io.inst[hxsize[1]:hxsize[0]] != U(0))
     io.isWeight <<= (io.inst == LWGT) & (io.inst[hxsize[1]:hxsize[0]] != U(0))
     io.isSync <<= ((io.inst == LINP) | (io.inst == LWGT)) & (io.inst[hxsize[1]:hxsize[0]] == U(0))
+
+class ComputeDecode(Module):
+    io = IO(
+        inst = Input(U.w(INST_BITS)),
+        push_next = Output(Bool),
+        push_prev = Output(Bool),
+        pop_next = Output(Bool),
+        pop_prev = Output(Bool),
+        isLoadAcc = Output(Bool),
+        isLoadUop = Output(Bool),
+        isSync = Output(Bool),
+        isAlu = Output(Bool),
+        isGemm = Output(Bool),
+        isFinish = Output(Bool)
+    )
+    ''' dec = io.inst.asTypeOf(new MemDecode)
+    io.push_next <<= dec.push_next
+    io.push_prev <<= dec.push_prev
+    io.pop_next <<= dec.pop_next
+    io.pop_prev <<= dec.pop_prev
+    io.isLoadAcc <<= io.inst == LACC & dec.xsize != U(0)
+    io.isLoadUop <<= io.inst == LUOP & dec.xsize != U(0)
+    io.isSync <<= (io.inst == LACC | io.inst == LUOP) & dec.xsize == U(0)
+    io.isAlu <<= io.inst == VMIN | io.inst == VMAX | io.inst == VADD | io.inst == VSHX
+    io.isGemm <<= io.inst == GEMM
+    io.isFinish <<= io.inst == FNSH '''
+
+class StoreDecode(Module):
+    io = IO(
+        inst = Input(U.w(INST_BITS)),
+        push_prev = Output(Bool),
+        pop_prev = Output(Bool),
+        isStore = Output(Bool),
+        isSync = Output(Bool)
+    )
+    ''' dec = io.inst.asTypeOf(new MemDecode)
+    io.push_prev <<= dec.push_prev
+    io.pop_prev <<= dec.pop_prev
+    io.isStore <<= io.inst == SOUT & dec.xsize != U(0)
+    io.isSync <<= io.inst == SOUT & dec.xsize == U(0)'''
+
+if __name__ == '__main__':
+    """ memDecode = MemDecode()
+    gemmDecode =GemmDecode()
+    aluDecode = AluDecode()
+    uopDecode = UopDecode()
+    fetchDecode = FetchDecode()
+    loadDecode = LoadDecode()
+    storeDecode = StoreDecode() """
+    Emitter.dumpVerilog(Emitter.dump(Emitter.emit(FetchDecode()), "FetchDecode.fir"))
+    Emitter.dumpVerilog(Emitter.dump(Emitter.emit(LoadDecode()), "LoadDecode.fir"))
+    Emitter.dumpVerilog(Emitter.dump(Emitter.emit(ComputeDecode()), "ComputeDecode.fir"))
+    Emitter.dumpVerilog(Emitter.dump(Emitter.emit(StoreDecode()), "StoreDecode.fir"))
+
+
 
 
