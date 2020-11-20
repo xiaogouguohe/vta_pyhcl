@@ -159,7 +159,7 @@ class AXIReadData(AXILiteReadData):
 
 class AXIMaster(AXIBase):
     def __init__(self):
-        super.__init__()
+        super().__init__()
         params = AXIParams()
         self.aw = Decoupled(AXIAddress())
         self.w = Decoupled(AXIWriteData())

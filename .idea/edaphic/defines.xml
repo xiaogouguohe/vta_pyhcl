@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SVCompilerDirectivesDefines">
+    <option name="defines">
+      <map>
+        <entry key="$USER_HOME$/PyChip-py-hcl/example/.fir/adder_buf.dir.v">
+          <value>
+            <map>
+              <entry key="RANDOM">
+                <value>
+                  <list>
+                    <Body />
+                  </list>
+                </value>
+              </entry>
+              <entry key="RANDOMIZE">
+                <value>
+                  <list>
+                    <Body />
+                    <Body />
+                    <Body />
+                    <Body />
+                  </list>
+                </value>
+              </entry>
+            </map>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/vta/core/.fir/Semaphore.fir.v">
+          <value>
+            <map>
+              <entry key="RANDOM">
+                <value>
+                  <list>
+                    <Body />
+                  </list>
+                </value>
+              </entry>
+              <entry key="RANDOMIZE">
+                <value>
+                  <list>
+                    <Body />
+                    <Body />
+                    <Body />
+                    <Body />
+                  </list>
+                </value>
+              </entry>
+            </map>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/vta/dpi/.fir/VTAMemDPIToAXI.fir.v">
+          <value>
+            <map>
+              <entry key="RANDOM">
+                <value>
+                  <list>
+                    <Body />
+                  </list>
+                </value>
+              </entry>
+              <entry key="RANDOMIZE">
+                <value>
+                  <list>
+                    <Body />
+                    <Body />
+                    <Body />
+                    <Body />
+                  </list>
+                </value>
+              </entry>
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="dependencies">
+      <map>
+        <entry key="FIRRTL_AFTER_INITIAL">
+          <value>
+            <set>
+              <option value="$USER_HOME$/PyChip-py-hcl/example/.fir/adder_buf.dir.v" />
+              <option value="$PROJECT_DIR$/vta/dpi/.fir/VTAMemDPIToAXI.fir.v" />
+              <option value="$PROJECT_DIR$/vta/core/.fir/Semaphore.fir.v" />
+            </set>
+          </value>
+        </entry>
+        <entry key="FIRRTL_BEFORE_INITIAL">
+          <value>
+            <set>
+              <option value="$USER_HOME$/PyChip-py-hcl/example/.fir/adder_buf.dir.v" />
+              <option value="$PROJECT_DIR$/vta/dpi/.fir/VTAMemDPIToAXI.fir.v" />
+              <option value="$PROJECT_DIR$/vta/core/.fir/Semaphore.fir.v" />
+            </set>
+          </value>
+        </entry>
+        <entry key="INIT_RANDOM">
+          <value>
+            <set>
+              <option value="$USER_HOME$/PyChip-py-hcl/example/.fir/adder_buf.dir.v" />
+              <option value="$PROJECT_DIR$/vta/dpi/.fir/VTAMemDPIToAXI.fir.v" />
+              <option value="$PROJECT_DIR$/vta/core/.fir/Semaphore.fir.v" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RANDOM">
+          <value>
+            <set>
+              <option value="$USER_HOME$/PyChip-py-hcl/example/.fir/adder_buf.dir.v" />
+              <option value="$PROJECT_DIR$/vta/dpi/.fir/VTAMemDPIToAXI.fir.v" />
+              <option value="$PROJECT_DIR$/vta/core/.fir/Semaphore.fir.v" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RANDOMIZE">
+          <value>
+            <set>
+              <option value="$USER_HOME$/PyChip-py-hcl/example/.fir/adder_buf.dir.v" />
+              <option value="$PROJECT_DIR$/vta/dpi/.fir/VTAMemDPIToAXI.fir.v" />
+              <option value="$PROJECT_DIR$/vta/core/.fir/Semaphore.fir.v" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RANDOMIZE_DELAY">
+          <value>
+            <set>
+              <option value="$USER_HOME$/PyChip-py-hcl/example/.fir/adder_buf.dir.v" />
+              <option value="$PROJECT_DIR$/vta/dpi/.fir/VTAMemDPIToAXI.fir.v" />
+              <option value="$PROJECT_DIR$/vta/core/.fir/Semaphore.fir.v" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RANDOMIZE_GARBAGE_ASSIGN">
+          <value>
+            <set>
+              <option value="$USER_HOME$/PyChip-py-hcl/example/.fir/adder_buf.dir.v" />
+              <option value="$PROJECT_DIR$/vta/dpi/.fir/VTAMemDPIToAXI.fir.v" />
+              <option value="$PROJECT_DIR$/vta/core/.fir/Semaphore.fir.v" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RANDOMIZE_INVALID_ASSIGN">
+          <value>
+            <set>
+              <option value="$USER_HOME$/PyChip-py-hcl/example/.fir/adder_buf.dir.v" />
+              <option value="$PROJECT_DIR$/vta/dpi/.fir/VTAMemDPIToAXI.fir.v" />
+              <option value="$PROJECT_DIR$/vta/core/.fir/Semaphore.fir.v" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RANDOMIZE_MEM_INIT">
+          <value>
+            <set>
+              <option value="$USER_HOME$/PyChip-py-hcl/example/.fir/adder_buf.dir.v" />
+              <option value="$PROJECT_DIR$/vta/dpi/.fir/VTAMemDPIToAXI.fir.v" />
+              <option value="$PROJECT_DIR$/vta/core/.fir/Semaphore.fir.v" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RANDOMIZE_REG_INIT">
+          <value>
+            <set>
+              <option value="$USER_HOME$/PyChip-py-hcl/example/.fir/adder_buf.dir.v" />
+              <option value="$PROJECT_DIR$/vta/dpi/.fir/VTAMemDPIToAXI.fir.v" />
+              <option value="$PROJECT_DIR$/vta/core/.fir/Semaphore.fir.v" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SYNTHESIS">
+          <value>
+            <set>
+              <option value="$USER_HOME$/PyChip-py-hcl/example/.fir/adder_buf.dir.v" />
+              <option value="$PROJECT_DIR$/vta/dpi/.fir/VTAMemDPIToAXI.fir.v" />
+              <option value="$PROJECT_DIR$/vta/core/.fir/Semaphore.fir.v" />
+            </set>
+          </value>
+        </entry>
+        <entry key="VERILATOR">
+          <value>
+            <set>
+              <option value="$USER_HOME$/PyChip-py-hcl/example/.fir/adder_buf.dir.v" />
+              <option value="$PROJECT_DIR$/vta/dpi/.fir/VTAMemDPIToAXI.fir.v" />
+              <option value="$PROJECT_DIR$/vta/core/.fir/Semaphore.fir.v" />
+            </set>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="status" value="NORMAL" />
+  </component>
+</project>
