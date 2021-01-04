@@ -120,7 +120,7 @@ def valid(basetype):
     return coupled
 
 
-def base_flipped(obj):
+def base_flipped(obj):# bj U.w(1)
     return Output(obj.typ) if isinstance(obj.value, Input) else Input(obj.typ)
 
 

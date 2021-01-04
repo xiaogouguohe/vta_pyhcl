@@ -13,6 +13,10 @@ class Vec(CType):
     typ: CType
     lvl: int = field(init=False, default=1)
 
+    @property
+    def field(self):
+        return low_ir.Default()
+
     def __post_init__(self):
         if self.size <= 0:
             raise Exception("can not declare an empty vector")

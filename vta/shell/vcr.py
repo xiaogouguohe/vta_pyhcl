@@ -20,14 +20,22 @@ class VCRMaster(Bundle):
         p = ShellKey()
         vp = p.vcrParams
         mp = p.memParams
-        self.launch = Output(Bool)
-        self.finish = Input(Bool)
+        #self.launch = Output(Bool)
+        #self.finish = Input(Bool)
         #self.ecnt = Vec(vp.nECnt, Flip(Valid(U.w(vp.regBits))))
-        self.ecnt = Flip(Valid(U.w(vp.regBits)))
-        self.vals = Output(Vec(vp.nVals, U.w(vp.regBits)))
-        self.ptrs = Output(Vec(vp.nPtrs, U.w(mp.addrBits)))
+        #self.ecnt = Flip(Valid(U.w(vp.regBits)))
+        #self.vals = Output(Vec(vp.nVals, U.w(vp.regBits)))
+        #self.ptrs = Output(Vec(vp.nPtrs, U.w(mp.addrBits)))
         #self.ucnt = Vec(vp.nUCnt, Flip(Valid(U.w(vp.regBits))))
-        self.ucnt = Flip(Valid(U.w(vp.regBits)))
+        #self.ucnt = Flip(Valid(U.w(vp.regBits)))
+        dic = self._kv
+        dic["launch"] = Bool
+        dic["finish"] = Bool.flip()
+        dic["ecnt"] = Flip(Valid(U.w(vp.regBits)))
+        #dic["ecnt"] = Vec(vp.nECnt, Flip(Valid(U.w(vp.regBits))))
+        dic["vals"] = Vec(vp.nVals, U.w(vp.regBits))
+        dic["ptrs"] = Vec(vp.nPtrs, U.w(mp.addrBits))
+        dic["ucnt"] = Flip(Valid(U.w(vp.regBits)))
 
 class VCRClient(Bundle):
     def __init__(self): #p ShellParams or ShellKey
@@ -35,33 +43,33 @@ class VCRClient(Bundle):
         p = ShellKey()
         vp = p.vcrParams
         mp = p.memParams
-        self.launch = Input(Bool)
-        self.finish = Output(Bool)
-        #self.ecnt = Vec(vp.nECnt, Valid(U.w(vp.regBits)))
-        self.ecnt = Valid(U.w(vp.regBits))
-        self.vals = Input(Vec(vp.nVals, U.w(vp.regBits)))
-        self.ptrs = Input(Vec(vp.nPtrs, U.w(mp.addrBits)))
-        #self.ucnt = Vec(vp.nUCnt, Valid(U.w(vp.regBits)))
-        self.ucnt = Valid(U.w(vp.regBits))
+        # self.launch = Input(Bool)
+        # self.finish = Output(Bool)
+        # #self.ecnt = Vec(vp.nECnt, Valid(U.w(vp.regBits)))
+        # self.ecnt = Valid(U.w(vp.regBits))
+        # self.vals = Input(Vec(vp.nVals, U.w(vp.regBits)))
+        # self.ptrs = Input(Vec(vp.nPtrs, U.w(mp.addrBits)))
+        # #self.ucnt = Vec(vp.nUCnt, Valid(U.w(vp.regBits)))
+        # self.ucnt = Valid(U.w(vp.regBits))
+        dic = self._kv
+        dic["launch"] = Input(Bool)
+        dic["finish"] = Output(Bool)
+        # dic["ecnt"] = Vec(vp.nECnt, Valid(U.w(vp.regBits)))
+        dic["ecnt"] = Valid(U.w(vp.regBits))
+        dic["vals"] = Input(Vec(vp.nVals, U.w(vp.regBits)))
+        dic["ptrs"] = Input(Vec(vp.nPtrs, U.w(mp.addrBits)))
+        # dic["ucnt"] = Vec(vp.nUCnt, Valid(U.w(vp.regBits)))
+        dic["ucnt"] = Valid(U.w(vp.regBits))
 
 class VCR(Module):
 
-    bun = Bundle(
-        host=AXILiteClient(),
-        vcr=VCRMaster()
-    )
-
     io = IO(
-        #host=Output(AXILiteClient()),
-        #vcr=Output(VCRMaster())
-        host = AXILiteClient(),
-        vcr = VCRMaster()
+        host=Output(AXILiteClient()),
+        vcr=Output(VCRMaster())
+        #host = AXILiteClient(),
+        #vcr = VCRMaster()
     )
 
-    """tmp = IO(
-        a = Input(Bool),
-        b = Output(Bool)
-    )"""
 
     p = ShellKey()
 
@@ -100,8 +108,7 @@ class VCR(Module):
     po = vo + vp.nVals
     uo = po + nPtrs
 
-    #wstate <<= sWriteData
-    """ with when(wstate == sWriteAddress):
+    with when(wstate == sWriteAddress):
         with when(io.host.aw.valid):  # valid是Output(Bool)类型，应该怎么判断？
             wstate <<= sWriteData  # fetch.py用的是<<= ， =报错 ？
     with elsewhen(wstate == sWriteData):
@@ -111,9 +118,13 @@ class VCR(Module):
         with when(io.host.b.ready):
             wstate <<= sWriteAddress
 
+
+
     # when(io.host.aw.fire()) { waddr := io.host.aw.bits.addr } #怎么写
-    with when(io.host.aw.valid):
-        waddr <<= io.host.aw.bits.addr
+    #with when(io.host.aw.valid):
+    #    waddr <<= io.host.aw.bits.addr
+
+
 
     io.host.aw.ready <<= (wstate == sWriteAddress)
     io.host.w.ready <<= (wstate == sWriteData)
@@ -169,11 +180,16 @@ class VCR(Module):
     with when(io.vcr.ucnt.valid):
         reg[uo] <<= io.vcr.ucnt.bits
     with elsewhen(io.host.w.valid & U(addr[uo]) == waddr):
-        reg[uo] <<= wdata"""
+        reg[uo] <<= wdata
 
-    
+
 
 if __name__ == "__main__":
+    vcrMaster = VCRMaster()
+    dic = vcrMaster._kv
+    for key in dic:
+        print(key, dic[key], type(dic[key]))
+
     Emitter.dumpVerilog(Emitter.dump(Emitter.emit(VCR()), "VCR.fir"))
     #vcrMaster = VCRMaster()
     #vcrClient = VCRClient()

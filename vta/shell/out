@@ -1,12 +1,2 @@
-valid <class 'pyhcl.dsl.cdatatype.U1'>
-<class 'type'>
-is type
-bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
-<class 'pyhcl.core._meta_pub.Pub'>
-is Pub
-valid <class 'pyhcl.dsl.cdatatype.U1'>
-<class 'type'>
-is type
-bits Pub(Output(typ=<class 'pyhcl.dsl.cdatatype.U32'>))
-<class 'pyhcl.core._meta_pub.Pub'>
-is Pub
+SubField(value=<class 'pyhcl.dsl.cdatatype.U1'>, name=valid, ref=object of <class 'pyhcl.core._repr.SubField'>)
+SubField(value=<class 'pyhcl.dsl.cdatatype.U1'>, name=valid, ref=object of <class 'pyhcl.core._repr.SubField'>)
